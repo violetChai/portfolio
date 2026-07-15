@@ -14,42 +14,26 @@
         nav a.active { background: #6366f1; color: #fff; }
         nav a:hover:not(.active) { color: #fff; background: #334155; }
         main { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; }
-        .section-block { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px; margin-bottom: 40px; }
+        .title-block { border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; }
+        .title-block h2 { font-size: 1.5rem; color: #fff; }
+        .title-block p { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; }
+        .grid-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .section-block { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px; }
         .section-block h3 { font-size: 1.1rem; color: #fff; margin-bottom: 15px; border-bottom: 1px solid #334155; padding-bottom: 8px; }
-        .grid-calc { display: grid; grid-template-columns: 5fr 7fr; gap: 24px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-        .input-wrapper { position: relative; }
-        .input-wrapper span { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 0.85rem; color: #64748b; font-weight: 600; }
-        .form-group input, .form-group select { width: 100%; background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 0.85rem; outline: none; }
-        .form-group input.has-symbol { padding-left: 26px; }
+        .form-group input { width: 100%; background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 0.85rem; outline: none; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .calc-btn { width: 100%; background: #6366f1; color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
-        .results-box { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-        .result-card { background: #0f172a; border: 1px solid #334155; padding: 15px; border-radius: 12px; }
-        .result-card span { font-size: 0.6rem; font-weight: 700; color: #6366f1; display: block; text-transform: uppercase; margin-bottom: 4px; }
-        .result-card .value { font-size: 1.4rem; font-weight: 900; color: #fff; }
-        .impact-box { background: linear-gradient(135deg, #1e1b4b, #0f172a); border: 1px solid #4338ca; border-radius: 12px; padding: 15px; margin-bottom: 15px; }
-        .impact-row { display: flex; justify-content: space-between; font-size: 0.75rem; padding: 6px 0; border-top: 1px solid #1e293b; }
-        .impact-row .val { font-weight: 700; color: #34d399; }
-        .bar-container { background: #334155; border-radius: 4px; height: 16px; overflow: hidden; margin-bottom: 6px; display: flex; }
-        .bar-extra { background: #10b981; height: 100%; transition: width 0.3s; }
-        .bar-base { background: #ef4444; height: 100%; transition: width 0.3s; }
-        .disclaimer { font-size: 0.65rem; color: #64748b; line-height: 1.4; text-align: justify; }
-        .retail-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px; }
-        .retail-form { display: grid; grid-template-columns: 1fr 2fr 1fr 1fr; gap: 12px; align-items: end; background: #0f172a; border: 1px solid #334155; padding: 15px; border-radius: 12px; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.8rem; margin-top: 10px; border-radius: 12px; overflow: hidden; }
-        thead tr { background: #0f172a; border-bottom: 1px solid #334155; color: #94a3b8; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
-        th, td { padding: 12px 15px; }
-        tbody tr { border-bottom: 1px solid #1e293b; background: #0f172a; }
-        tbody tr:hover { background: #1e293b; }
-        .badge { display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 3px 6px; border-radius: 4px; text-transform: uppercase; }
-        .badge-woolworths { background: #064e3b; color: #34d399; }
-        .badge-coles { background: #7f1d1d; color: #f87171; }
-        .badge-aldi { background: #1e3a8a; color: #60a5fa; }
-        .discount-tag { font-size: 0.65rem; font-weight: 700; color: #f59e0b; }
+        .calc-btn:hover { background: #4f46e5; }
+        .result-display { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 15px; margin-top: 15px; }
+        .result-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 6px 0; }
+        .result-row .lbl { color: #94a3b8; }
+        .result-row .val { font-weight: 700; color: #fff; }
+        .gauge-container { background: #334155; border-radius: 6px; height: 14px; overflow: hidden; margin-top: 10px; position: relative; }
+        .gauge-bar { height: 100%; width: 0%; background: #10b981; transition: width 0.3s; }
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
-        @media(max-width: 850px) { .grid-calc, .retail-form { grid-template-columns: 1fr; } .retail-toolbar { flex-direction: column; align-items: flex-start; } }
+        @media(max-width: 850px) { .grid-two-col { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -61,163 +45,103 @@
                 <a href="pm-tools.html">Product Tools</a>
                 <a href="projects.html">Project Tools</a>
                 <a href="analysis.html" class="active">Business Analysis</a>
+                <a href="examples.html">Industry Examples</a>
             </nav>
         </div>
     </header>
     <main>
-        <div class="section-block">
-            <h3>🏠 Industry Component 1: Mortgage Amortization Matrix</h3>
-            <div class="grid-calc">
-                <div>
-                    <div class="form-group"><label>Loan Amount ($)</label><div class="input-wrapper"><span>$</span><input type="number" id="loanAmount" value="500000" class="has-symbol"></div></div>
-                    <div class="form-row">
-                        <div class="form-group"><label>Interest (% p.a.)</label><input type="number" id="interestRate" value="6.5" step="0.01"></div>
-                        <div class="form-group"><label>Term (Years)</label><input type="number" id="loanTerm" value="30"></div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group"><label>Frequency</label><select id="frequency"><option value="12">Monthly</option><option value="26">Fortnightly</option></select></div>
-                        <div class="form-group"><label>Extra Payment</label><div class="input-wrapper"><span>$</span><input type="number" id="extraPayment" value="200" class="has-symbol"></div></div>
-                    </div>
-                    <button onclick="calculateLoan()" class="calc-btn">Analyze Matrix</button>
+        <div class="title-block">
+            <h2>📊 Quantitative Business Analysis</h2>
+            <p>Advanced statistical forecasting, prioritization systems, and capital evaluation logic engines.</p>
+        </div>
+
+        <div class="grid-two-col">
+            <!-- WIDGET 1: NPV -->
+            <div class="section-block">
+                <h3>💵 Project Net Present Value (NPV)</h3>
+                <div class="form-row">
+                    <div class="form-group"><label>Initial Cost ($)</label><input type="number" id="npvInitial" value="50000"></div>
+                    <div class="form-group"><label>Discount Rate (%)</label><input type="number" id="npvRate" value="8" step="0.1"></div>
                 </div>
-                <div style="display: flex; flex-direction: column; justify-content: space-between;">
-                    <div class="results-box">
-                        <div class="result-card"><span>Base Payment</span><div id="baseRepaymentResult" class="value">$0.00</div></div>
-                        <div class="result-card"><span style="color:#34d399;">Accelerated</span><div id="totalRepaymentResult" class="value">$0.00</div></div>
-                    </div>
-                    <div class="impact-box">
-                        <div class="impact-row" style="border:none;"><span class="lbl">Term Shortened By:</span><span id="timeSaved" class="val" style="color:#fbbf24;">0 Years</span></div>
-                        <div class="impact-row"><span class="lbl">Capital Interest Conserved:</span><span id="interestSaved" class="val">$0.00</span></div>
-                    </div>
-                    <div style="background:#0f172a; border:1px solid #334155; padding:12px; border-radius:10px; margin-bottom:10px;">
-                        <span style="font-size:0.65rem; color:#94a3b8; text-transform:uppercase; font-weight:700; display:block; margin-bottom:6px;">Interest Ratio Matrix</span>
-                        <div class="bar-container"><div id="barExtra" class="bar-extra" style="width:50%;"></div><div id="barBase" class="bar-base" style="width:50%;"></div></div>
-                    </div>
-                    <p class="disclaimer"><strong>Disclaimer:</strong> Programmatic baseline calculation simulation portfolio module. Encompasses geometric calculations; does not encompass banking transaction processing parameters.</p>
+                <div class="form-group"><label>Future Cash Inflows (Comma Separated)</label><input type="text" id="npvFlows" value="15000, 20000, 25000, 30000"></div>
+                <button onclick="calculateNPV()" class="calc-btn">Discount Cash Flows</button>
+                <div class="result-display">
+                    <div class="result-row"><div class="lbl">Net Present Worth:</div><div id="npvOutput" class="val">$0.00</div></div>
+                    <div class="result-row"><div class="lbl">Investment Verdict:</div><div id="npvVerdict" class="val">-</div></div>
+                </div>
+            </div>
+
+            <!-- WIDGET 2: CAPM -->
+            <div class="section-block">
+                <h3>🛡️ Capital Asset Pricing Model (CAPM)</h3>
+                <div class="form-row">
+                    <div class="form-group"><label>Risk-Free Rate (%)</label><input type="number" id="capmRiskFree" value="3.5" step="0.1"></div>
+                    <div class="form-group"><label>Asset Beta (β)</label><input type="number" id="capmBeta" value="1.2" step="0.01"></div>
+                </div>
+                <div class="form-group"><label>Expected Market Return (%)</label><input type="number" id="capmMarket" value="9.0" step="0.1"></div>
+                <button onclick="calculateCAPM()" class="calc-btn">Evaluate Hurdle Rate</button>
+                <div class="result-display">
+                    <div class="result-row"><div class="lbl">Expected Return:</div><div id="capmOutput" class="val" style="color:#10b981;">0.00%</div></div>
+                    <div class="result-row"><div class="lbl">Market Risk Premium:</div><div id="mrpOutput" class="val">0.00%</div></div>
                 </div>
             </div>
         </div>
 
-        <div class="section-block">
-            <h3>🛒 Industry Component 2: Retail Specials Database Ledger</h3>
-            <div class="retail-toolbar">
-                <div class="form-group" style="margin:0; width: 250px;"><input type="text" id="tableSearch" placeholder="🔍 Type keyword to filter name..." onkeyup="renderGroceryTable()"></div>
-                <div>
-                    <button onclick="exportToCSV()" style="background:#10b981; border:none; color:#fff; font-weight:700; font-size:0.75rem; padding:10px 16px; border-radius:10px; cursor:pointer;">📥 Export To Excel CSV</button>
-                    <button onclick="clearSavedGroceries()" style="background:#334155; border:none; color:#94a3b8; font-weight:700; font-size:0.75rem; padding:10px 16px; border-radius:10px; cursor:pointer; margin-left:6px;">Wipe Memory</button>
+        <div class="grid-two-col">
+            <!-- WIDGET 3: SPRINT ESTIMATION -->
+            <div class="section-block">
+                <h3>🏃 Sprint Capacity Median Planner</h3>
+                <div class="form-row">
+                    <div class="form-group"><label>Engineers</label><input type="number" id="teamSize" value="5"></div>
+                    <div class="form-group"><label>Sprint Days</label><input type="number" id="sprintDays" value="10"></div>
+                </div>
+                <div class="form-group"><label>Task Estimations (Comma Separated Hours)</label><input type="text" id="taskEstimates" value="5, 8, 8, 12, 40"></div>
+                <button onclick="calculateSprint()" class="calc-btn">Analyze Constraints</button>
+                <div class="result-display">
+                    <div class="result-row"><div class="lbl">Median Task Duration:</div><div id="medianOutput" class="val">0 Hours</div></div>
+                    <div class="result-row"><div class="lbl">Team Pool Capacity:</div><div id="capacityOutput" class="val">0 Hours</div></div>
                 </div>
             </div>
-            <div class="retail-form">
-                <div class="form-group" style="margin:0;"><label>Outlet</label><select id="newStore"><option>Woolworths</option><option>Coles</option><option>Aldi</option></select></div>
-                <div class="form-group" style="margin:0;"><label>Product Item Name</label><input type="text" id="newItemName" placeholder="e.g., Cadbury Block 180g"></div>
-                <div class="form-group" style="margin:0;"><label>Special ($)</label><input type="number" id="newSpecialPrice" step="0.01"></div>
-                <div class="form-group" style="margin:0;"><label>Retail ($)</label><input type="number" id="newNormalPrice" step="0.01"></div>
-            </div>
-            <button onclick="addNewSpecialItem()" class="calc-btn" style="margin-bottom:20px;">Commit Product Node To Array</button>
 
-            <table style="width:100%;">
-                <thead><tr><th>Outlet Node</th><th>Product Description</th><th>Special Price</th><th>Base Cost</th><th>Delta Metric</th></tr></thead>
-                <tbody id="groceryTableBody"></tbody>
-            </table>
+            <!-- WIDGET 4: LTV / CAC GAUGE -->
+            <div class="section-block">
+                <h3>💎 Customer LTV to CAC Health Ratio</h3>
+                <div class="form-row">
+                    <div class="form-group"><label>Lifetime Value ($)</label><input type="number" id="ltvValue" value="3000"></div>
+                    <div class="form-group"><label>Acquisition Cost ($)</label><input type="number" id="cacValue" value="800"></div>
+                </div>
+                <button onclick="calculateLTV()" class="calc-btn" style="margin-top:20px;">Process Unit Economics</button>
+                <div class="result-display">
+                    <div class="result-row"><div class="lbl">LTV : CAC Ratio:</div><div id="ratioOutput" class="val">0.00 : 1</div></div>
+                    <div class="result-row"><div class="lbl">Strategic Assessment:</div><div id="healthOutput" class="val">-</div></div>
+                    <div class="gauge-container"><div id="gaugeBar" class="gauge-bar"></div></div>
+                </div>
+            </div>
         </div>
     </main>
-    <footer>&copy; 2026 Violet Chai. Pure local compilation calculations.</footer>
+    <footer>&copy; 2026 Violet Chai. Pure local analytical matrices.</footer>
 
-    <!-- JavaScript Execution Engine Container -->
     <script>
-        function calculateLoan() {
-            const P = parseFloat(document.getElementById('loanAmount').value) || 0;
-            const annualRate = (parseFloat(document.getElementById('interestRate').value) || 0) / 100;
-            const totalYears = parseFloat(document.getElementById('loanTerm').value) || 0;
-            const n = parseInt(document.getElementById('frequency').value);
-            const extra = parseFloat(document.getElementById('extraPayment').value) || 0;
-            if (P <= 0 || annualRate <= 0) return;
-
-            const r = annualRate / n; const totalPayments = totalYears * n;
-            const basePayment = (P * r * Math.pow(1 + r, totalPayments)) / (Math.pow(1 + r, totalPayments) - 1);
-            document.getElementById('baseRepaymentResult').textContent = '$' + basePayment.toFixed(2);
-            document.getElementById('totalRepaymentResult').textContent = '$' + (basePayment + extra).toFixed(2);
-
-            let balanceBase = P, balanceExtra = P, totalInterestBase = 0, totalInterestExtra = 0, basePeriods = 0, extraPeriods = 0;
-            while (balanceBase > 0 && basePeriods < 1200) { let i = balanceBase * r; totalInterestBase += i; balanceBase = balanceBase + i - basePayment; basePeriods++; }
-            while (balanceExtra > 0 && extraPeriods < 1200) { let i = balanceExtra * r; totalInterestExtra += i; let pay = Math.min(basePayment + extra, balanceExtra + i); balanceExtra = balanceExtra + i - pay; extraPeriods++; }
-
-            const interestSaved = Math.max(0, totalInterestBase - totalInterestExtra);
-            document.getElementById('interestSaved').textContent = '$' + interestSaved.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('timeSaved').textContent = ((basePeriods - extraPeriods) / n).toFixed(1) + ' Years';
-
-            const pctExtra = totalInterestBase > 0 ? (totalInterestExtra / totalInterestBase) * 100 : 0;
-            document.getElementById('barExtra').style.width = pctExtra + '%';
-            document.getElementById('barBase').style.width = (100 - pctExtra) + '%';
+        function calculateSprint() {
+            const team = parseInt(document.getElementById('teamSize').value) || 0;
+            const days = parseInt(document.getElementById('sprintDays').value) || 0;
+            const arr = document.getElementById('taskEstimates').value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x)).sort((a, b) => a - b);
+            const totalCapacityPool = team * days * 6;
+            if(arr.length === 0) return;
+            let median = 0; const mid = Math.floor(arr.length / 2);
+            if(arr.length % 2 !== 0) { median = arr[mid]; } else { median = (arr[mid - 1] + arr[mid]) / 2; }
+            document.getElementById('medianOutput').textContent = median.toFixed(1) + ' Hours';
+            document.getElementById('capacityOutput').textContent = totalCapacityPool + ' Hours';
         }
 
-        const defaultGroceryData = [
-            { store: 'Woolworths', item: 'Cadbury Chocolate Block 180g', specialPrice: 3.50, normalPrice: 7.00 },
-            { store: 'Coles', item: 'KB\'s Salt & Pepper Squid 500g', specialPrice: 5.75, normalPrice: 11.50 },
-            { store: 'Aldi', item: 'Specially Selected Sourdough Loaf', specialPrice: 3.29, normalPrice: 4.49 }
-        ];
-        let groceryData = JSON.parse(localStorage.getItem('violet_portfolio_groceries')) || defaultGroceryData;
-
-        function renderGroceryTable() {
-            const tbody = document.getElementById('groceryTableBody');
-            const searchKeyword = document.getElementById('tableSearch').value.toLowerCase();
-            tbody.innerHTML = '';
-
-            groceryData.forEach(item => {
-                if (item.item.toLowerCase().indexOf(searchKeyword) === -1) return;
-                const savingsPct = (((item.normalPrice - item.specialPrice) / item.normalPrice) * 100).toFixed(0);
-                let cls = 'badge-generic';
-                if (item.store === 'Woolworths') cls = 'badge-woolworths';
-                if (item.store === 'Coles') cls = 'badge-coles';
-                if (item.store === 'Aldi') cls = 'badge-aldi';
-
-                const row = '<tr>' +
-                    '<td><span class="badge ' + cls + '">' + item.store + '</span></td>' +
-                    '<td style="font-weight:700; color:#fff;">' + item.item + '</td>' +
-                    '<td style="color:#10b981; font-weight:700;">$' + item.specialPrice.toFixed(2) + '</td>' +
-                    '<td style="color:#64748b; text-decoration:line-through;">$' + item.normalPrice.toFixed(2) + '</td>' +
-                    '<td><span class="discount-tag">' + savingsPct + '% OFF</span></td>' +
-                    '</tr>';
-                tbody.insertAdjacentHTML('beforeend', row);
-            });
-        }
-
-        function addNewSpecialItem() {
-            const store = document.getElementById('newStore').value;
-            const item = document.getElementById('newItemName').value.trim();
-            const specialPrice = parseFloat(document.getElementById('newSpecialPrice').value);
-            const normalPrice = parseFloat(document.getElementById('newNormalPrice').value);
-            if (!item || isNaN(specialPrice) || isNaN(normalPrice)) { alert('Fill values.'); return; }
-
-            groceryData.unshift({ store, item, specialPrice, normalPrice });
-            localStorage.setItem('violet_portfolio_groceries', JSON.stringify(groceryData));
-            renderGroceryTable();
-
-            document.getElementById('newItemName').value = '';
-            document.getElementById('newSpecialPrice').value = '';
-            document.getElementById('newNormalPrice').value = '';
-        }
-
-        function exportToCSV() {
-            let csvContent = "data:text/csv;charset=utf-8,Outlet,Product Name,Special Price,Regular Price,Discount Percentage\n";
-            groceryData.forEach(r => {
-                const pct = (((r.normalPrice - r.specialPrice) / r.normalPrice) * 100).toFixed(0) + "%";
-                csvContent += '"' + r.store + '","' + r.item + '","$' + r.specialPrice.toFixed(2) + '","$' + r.normalPrice.toFixed(2) + '","' + pct + '"\n';
-            });
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "violet_retail_specials_report.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        function clearSavedGroceries() {
-            if(confirm('Wipe cache?')) { localStorage.removeItem('violet_portfolio_groceries'); groceryData = [...defaultGroceryData]; renderGroceryTable(); }
-        }
-
-        window.onload = function() { calculateLoan(); renderGroceryTable(); }
+        function calculateLTV() {
+            const ltv = parseFloat(document.getElementById('ltvValue').value) || 0;
+            const cac = parseFloat(document.getElementById('cacValue').value) || 1;
+            const ratio = ltv / cac;
+            document.getElementById('ratioOutput').textContent = ratio.toFixed(2) + ' : 1';
+            const bar = document.getElementById('gaugeBar'); const status = document.getElementById('healthOutput');
+            bar.style.width = Math.min((ratio / 5) * 100, 100) + '%';
+if(ratio < 1.0) { status.textContent = '⚠️ Distressed'; status.style.color = '#ef4444'; bar.style.backgroundColor = '#ef4444'; }else if(ratio >= 1.0 && ratio < 3.0) { status.textContent = '⚖️ Sub-Optimal'; status.style.color = '#f59e0b'; bar.style.backgroundColor = '#f59e0b'; }else { status.textContent = '👑 Elite Expansion'; status.style.color = '#10b981'; bar.style.backgroundColor = '#10b981'; }}function calculateNPV() {const initial = parseFloat(document.getElementById('npvInitial').value) || 0;const rate = (parseFloat(document.getElementById('npvRate').value) || 0) / 100;const flows = document.getElementById('npvFlows').value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));let npv = -initial;for(let t = 0; t < flows.length; t++) { npv += flows[t] / Math.pow(1 + rate, t + 1); }document.getElementById('npvOutput').textContent = (npv >= 0 ? '$' : '-$') + Math.abs(npv).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});const verdict = document.getElementById('npvVerdict');if(npv > 0) { verdict.textContent = '✅ Viable Opportunity'; verdict.style.color = '#10b981'; }else { verdict.textContent = '❌ Value Destructive'; verdict.style.color = '#ef4444'; }}function calculateCAPM() {const rf = (parseFloat(document.getElementById('capmRiskFree').value) || 0) / 100;const beta = parseFloat(document.getElementById('capmBeta').value) || 0;const rm = (parseFloat(document.getElementById('capmMarket').value) || 0) / 100;const mrp = rm - rf;document.getElementById('capmOutput').textContent = ((rf + (beta * mrp)) * 100).toFixed(2) + '%';document.getElementById('mrpOutput').textContent = (mrp * 100).toFixed(2) + '%';}window.onload = function() { calculateSprint(); calculateLTV(); calculateNPV(); calculateCAPM(); }
     </script>
 </body>
 </html>
