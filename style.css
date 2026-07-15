@@ -190,11 +190,12 @@ main {
 }
 
 /* --- Global Functional Forms & Selection Elements --- */
-.form-group { 
+.form-group, .field { 
     margin-bottom: 15px; 
 }
 
-.form-group label { 
+/* This applies to ALL form labels on your site */
+label { 
     display: block; 
     font-size: 0.65rem; 
     font-weight: 700; 
@@ -218,7 +219,8 @@ main {
     font-weight: 600; 
 }
 
-.form-group input, .form-group select, .field input, .field select { 
+/* This catch-all applies to ALL input and select elements across all pages */
+input, select, textarea, option { 
     width: 100%; 
     background: #0f172a; 
     border: 1px solid #475569; 
@@ -227,9 +229,10 @@ main {
     color: #fff; 
     font-size: 0.85rem; 
     outline: none; 
-} 
+}
 
-.form-group input.has-symbol { 
+/* Specialized padding rules for the mortgage symbol */
+input.has-symbol { 
     padding-left: 26px; 
 }
 
@@ -238,6 +241,7 @@ main {
     grid-template-columns: 1fr 1fr; 
     gap: 15px; 
 }
+
 
 .selector-box select { 
     background: #1e293b; 
