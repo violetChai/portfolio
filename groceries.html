@@ -4,98 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Violet's Portfolio | Groceries</title>
-    <!-- Corrected Tailwind CSS Engine Link -->
-    <script src="https://jsdelivr.net"></script>
-    <!-- Corrected Google Fonts Links -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: #0f172a; color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: #1e293b; border-bottom: 1px solid #334155; padding: 15px 30px; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: #fff; }
+        nav a { text-decoration: none; color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin-left: 8px; border-radius: 8px; }
+        nav a.active { background: #6366f1; color: #fff; }
+        nav a:hover:not(.active) { color: #fff; background: #334155; }
+        main { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; }
+        .header-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; gap: 20px; }
+        .header-row h2 { font-size: 1.5rem; color: #fff; }
+        .header-row p { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; }
+        .filter-buttons button { background: #1e293b; border: 1px solid #334155; color: #e2e8f0; font-size: 0.75rem; font-weight: 700; padding: 8px 14px; border-radius: 10px; cursor: pointer; margin-left: 5px; transition: 0.2s; }
+        .filter-buttons button:hover { background: #334155; color: #fff; }
+        .input-panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin-bottom: 30px; }
+        .input-panel h3 { font-size: 0.75rem; color: #cbd5e1; text-transform: uppercase; margin-bottom: 15px; }
+        .form-grid { display: grid; grid-template-columns: 1.5fr 2.5fr 1fr 1fr; gap: 15px; align-items: end; }
+        .field { display: flex; flex-direction: column; gap: 6px; }
+        .field label { font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
+        .field input, .field select { background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 9px 12px; color: #fff; font-size: 0.8rem; font-weight: 600; outline: none; }
+        .action-row { display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; }
+        .btn-small { border: none; font-weight: 700; font-size: 0.75rem; padding: 9px 16px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .btn-add { background: #6366f1; color: #fff; }
+        .btn-add:hover { background: #4f46e5; }
+        .btn-wipe { background: #334155; color: #94a3b8; }
+        .btn-wipe:hover { background: #475569; color: #fff; }
+        .table-container { overflow: hidden; border: 1px solid #334155; border-radius: 16px; background: #1e293b; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.8rem; }
+        thead tr { background: #1e293b; border-bottom: 1px solid #334155; color: #94a3b8; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
+        th, td { padding: 14px 20px; }
+        tbody tr { border-bottom: 1px solid #1e293b; background: #0f172a; transition: 0.1s; }
+        tbody tr:hover { background: #1e293b; }
+        .badge { display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; }
+        .badge-woolworths { background: #064e3b; color: #34d399; border: 1px solid #047857; }
+        .badge-coles { background: #7f1d1d; color: #f87171; border: 1px solid #b91c1c; }
+        .badge-aldi { background: #1e3a8a; color: #60a5fa; border: 1px solid #1d4ed8; }
+        .badge-generic { background: #334155; color: #cbd5e1; }
+        .discount-tag { font-size: 0.65rem; font-weight: 700; color: #f59e0b; background: rgba(245,158,11,0.1); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(245,158,11,0.2); }
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
+        @media(max-width: 768px) { .header-row { flex-direction: column; align-items: flex-start; } .form-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
-
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased">
-
-    <!-- NAVIGATION HEADER -->
-    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="h-10 w-10 bg-gradient-to-tr from-indigo-500 to-pink-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg">⚡</div>
-                <span class="text-lg font-extrabold tracking-tight text-white">Violet.Dev</span>
-            </div>
-            <nav class="flex space-x-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 text-xs font-bold">
-                <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">Dashboard</a>
-                <a href="loans.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">Home Loans</a>
-                <a href="groceries.html" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white shadow-sm">Grocery Tracker</a>
-                <a href="about.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">About Me</a>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">⚡ Violet.Dev</div>
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="loans.html">Home Loans</a>
+                <a href="groceries.html" class="active">Grocery Tracker</a>
             </nav>
         </div>
     </header>
-
-    <!-- CONTENT -->
-    <main class="flex-grow max-w-6xl w-full mx-auto px-6 py-12 space-y-8">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-b border-slate-800 pb-4">
+    <main>
+        <div class="header-row">
             <div>
-                <h2 class="text-2xl font-extrabold text-white tracking-tight">🛒 Grocery Analytics Tracker</h2>
-                <p class="text-xs text-slate-400 mt-1">Log catalog half-price sales. Items stay securely preserved using local browser storage parameters.</p>
+                <h2>🛒 Grocery Analytics Tracker</h2>
+                <p>Log catalog half-price sales. Items stay securely preserved using local browser storage parameters.</p>
             </div>
-            <div class="flex flex-wrap gap-2">
-                <button onclick="filterGroceries('All')" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition cursor-pointer">All Outlets</button>
-                <button onclick="filterGroceries('Woolworths')" class="px-3.5 py-1.5 bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 text-xs font-bold rounded-xl transition cursor-pointer">Woolworths</button>
-                <button onclick="filterGroceries('Coles')" class="px-3.5 py-1.5 bg-red-950/60 border border-red-800/60 text-red-400 text-xs font-bold rounded-xl transition cursor-pointer">Coles</button>
-                <button onclick="filterGroceries('Aldi')" class="px-3.5 py-1.5 bg-blue-950/60 border border-blue-800/60 text-blue-400 text-xs font-bold rounded-xl transition cursor-pointer">Aldi</button>
+            <div class="filter-buttons">
+                <button onclick="filterGroceries('All')">All Outlets</button>
+                <button onclick="filterGroceries('Woolworths')" style="color: #34d399;">Woolworths</button>
+                <button onclick="filterGroceries('Coles')" style="color: #f87171;">Coles</button>
+                <button onclick="filterGroceries('Aldi')" style="color: #60a5fa;">Aldi</button>
             </div>
         </div>
-
-        <div class="bg-slate-800/40 border border-slate-800 rounded-2xl p-5 space-y-4">
-            <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Log Live Special Item</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
-                <div class="space-y-1.5">
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Outlet</label>
-                    <select id="newStore" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-white focus:outline-none">
+        <div class="input-panel">
+            <h3>Log Live Special Item</h3>
+            <div class="form-grid">
+                <div class="field">
+                    <label>Outlet</label>
+                    <select id="newStore">
                         <option>Woolworths</option>
                         <option>Coles</option>
                         <option>Aldi</option>
                     </select>
                 </div>
-                <div class="space-y-1.5 lg:col-span-2">
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Product Description Name</label>
-                    <input type="text" id="newItemName" placeholder="e.g., Connoisseur Ice Cream 1L" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-white focus:outline-none">
+                <div class="field">
+                    <label>Product Description Name</label>
+                    <input type="text" id="newItemName" placeholder="e.g., Connoisseur Ice Cream 1L">
                 </div>
-                <div class="space-y-1.5">
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Special Promo Price ($)</label>
-                    <input type="number" id="newSpecialPrice" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-white focus:outline-none">
+                <div class="field">
+                    <label>Special Promo Price ($)</label>
+                    <input type="number" id="newSpecialPrice" step="0.01">
                 </div>
-                <div class="space-y-1.5">
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Regular Retail Price ($)</label>
-                    <input type="number" id="newNormalPrice" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-white focus:outline-none">
+                <div class="field">
+                    <label>Regular Retail Price ($)</label>
+                    <input type="number" id="newNormalPrice" step="0.01">
                 </div>
             </div>
-            <div class="flex justify-end gap-2 pt-1">
-                <button onclick="clearSavedGroceries()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-bold rounded-xl transition cursor-pointer">Wipe Local Storage</button>
-                <button onclick="addNewSpecialItem()" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition shadow-md cursor-pointer">Commit Special to Memory Node</button>
+            <div class="action-row">
+                <button onclick="clearSavedGroceries()" class="btn-small btn-wipe">Wipe Local Storage</button>
+                <button onclick="addNewSpecialItem()" class="btn-small btn-add">Commit Special to Memory Node</button>
             </div>
         </div>
-
-        <div class="overflow-hidden border border-slate-800 rounded-2xl bg-slate-900 shadow-xl">
-            <table class="w-full text-left border-collapse">
+        <div class="table-container">
+            <table>
                 <thead>
-                    <tr class="bg-slate-800/50 border-b border-slate-800 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                        <th class="py-4 px-6">Brand Node</th>
-                        <th class="py-4 px-6">Item Description Matrix</th>
-                        <th class="py-4 px-6">Promo Target Rate</th>
-                        <th class="py-4 px-6">Base Cost</th>
-                        <th class="py-4 px-6">Delta Metric Value</th>
+                    <tr>
+                        <th>Brand Node</th>
+                        <th>Item Description</th>
+                        <th>Promo Price</th>
+                        <th>Base Cost</th>
+                        <th>Value Saved</th>
                     </tr>
                 </thead>
-                <tbody id="groceryTableBody" class="divide-y divide-slate-800 text-xs font-semibold text-slate-300"></tbody>
+                <tbody id="groceryTableBody"></tbody>
             </table>
         </div>
     </main>
-
-    <footer class="bg-slate-950 border-t border-slate-800/60 py-8 text-center text-xs font-medium text-slate-500">
-        &copy; 2026 Violet Chai. Powered by modern vanilla execution engines.
-    </footer>
-
+    <footer>&copy; 2026 Violet Chai. Built using pure native CSS layout structures.</footer>
     <script>
         const defaultGroceryData = [
             { store: 'Woolworths', item: 'Cadbury Chocolate Block 180g', specialPrice: 3.50, normalPrice: 7.00 },
@@ -110,19 +130,18 @@
             tbody.innerHTML = '';
             items.forEach(item => {
                 const savingsPct = (((item.normalPrice - item.specialPrice) / item.normalPrice) * 100).toFixed(0);
-                let storeBadgeColor = 'bg-slate-800 text-slate-300 border border-slate-700';
-                if (item.store === 'Woolworths') storeBadgeColor = 'bg-emerald-950/60 text-emerald-400 border border-emerald-800/40';
-                if (item.store === 'Coles') storeBadgeColor = 'bg-red-950/60 text-red-400 border border-red-800/40';
-                if (item.store === 'Aldi') storeBadgeColor = 'bg-blue-950/60 text-blue-400 border border-blue-800/40';
+                let cls = 'badge-generic';
+                if (item.store === 'Woolworths') cls = 'badge-woolworths';
+                if (item.store === 'Coles') cls = 'badge-coles';
+                if (item.store === 'Aldi') cls = 'badge-aldi';
 
-                const row = `
-                    <tr class="hover:bg-slate-800/30 transition-colors">
-                        <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${storeBadgeColor}">${item.store}</span></td>
-                        <td class="py-4 px-6 font-bold text-white text-xs">${item.item}</td>
-                        <td class="py-4 px-6 font-bold text-emerald-400 text-sm">$${item.specialPrice.toFixed(2)}</td>
-                        <td class="py-4 px-6 text-slate-500 line-through">$${item.normalPrice.toFixed(2)}</td>
-                        <td class="py-4 px-6"><span class="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold px-2 py-0.5 rounded uppercase tracking-wider">${savingsPct}% OFF</span></td>
-                    </tr>`;
+                const row = '<tr>' +
+                    '<td><span class="badge ' + cls + '">' + item.store + '</span></td>' +
+                    '<td style="font-weight: 700; color: #fff;">' + item.item + '</td>' +
+                    '<td style="color: #10b981; font-weight: 700; font-size: 0.9rem;">$' + item.specialPrice.toFixed(2) + '</td>' +
+                    '<td style="color: #64748b; text-decoration: line-through;">$' + item.normalPrice.toFixed(2) + '</td>' +
+                    '<td><span class="discount-tag">' + savingsPct + '% OFF</span></td>' +
+                    '</tr>';
                 tbody.insertAdjacentHTML('beforeend', row);
             });
         }
@@ -140,10 +159,7 @@
 
             if (!item || isNaN(specialPrice) || isNaN(normalPrice)) { alert('Please enter data values.'); return; }
 
-            groceryData.unshift({ store, item, specialPrice, normalPrice });
-            localStorage.setItem('violet_portfolio_groceries', JSON.stringify(groceryData));
-            renderTable(groceryData);
-document.getElementById('newItemName').value = '';document.getElementById('newSpecialPrice').value = '';document.getElementById('newNormalPrice').value = '';}function clearSavedGroceries() {if(confirm('Wipe cache?')) {localStorage.removeItem('violet_portfolio_groceries');groceryData = [...defaultGroceryData];renderTable(groceryData);}}window.onload = () => renderTable(groceryData);
+groceryData.unshift({ store, item, specialPrice, normalPrice });localStorage.setItem('violet_portfolio_groceries', JSON.stringify(groceryData));renderTable(groceryData);document.getElementById('newItemName').value = '';document.getElementById('newSpecialPrice').value = '';document.getElementById('newNormalPrice').value = '';}function clearSavedGroceries() {if(confirm('Wipe cache?')) {localStorage.removeItem('violet_portfolio_groceries');groceryData = [...defaultGroceryData];renderTable(groceryData);}}window.onload = () => renderTable(groceryData);
     </script>
 </body>
 </html>
