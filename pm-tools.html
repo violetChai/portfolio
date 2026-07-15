@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Violet's Portfolio | Product Tools</title>
+    <title>Violet's Portfolio | Product Suite</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background: #0f172a; color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
@@ -14,18 +14,16 @@
         nav a.active { background: #6366f1; color: #fff; }
         nav a:hover:not(.active) { color: #fff; background: #334155; }
         main { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; }
-        .title-block { border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; }
+        .title-block { border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
         .title-block h2 { font-size: 1.5rem; color: #fff; }
-        .title-block p { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; }
-        .grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 40px; }
-        .panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px; }
-        .panel h3 { font-size: 0.95rem; color: #fff; margin-bottom: 15px; border-bottom: 1px solid #334155; padding-bottom: 8px; }
+        .selector-box select { background: #1e293b; color: #fff; border: 1px solid #475569; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: 0.85rem; outline: none; cursor: pointer; }
+        .tool-panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px; display: none; }
+        .tool-panel.active { display: block; }
         .split-box { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
         .form-group input, .form-group select { width: 100%; background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 0.85rem; outline: none; }
         .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #0f172a; border-radius: 10px; margin-bottom: 10px; border: 1px solid #334155; }
-        .toggle-row span { font-size: 0.8rem; font-weight: 600; }
         .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .3s; border-radius: 24px; }
@@ -35,13 +33,12 @@
         .preview-window { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 20px; min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .badge { font-size: 0.65rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; margin-bottom: 10px; }
         .btn-calc { width: 100%; background: #6366f1; color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.2s; margin-top: 5px; }
-        .btn-calc:hover { background: #4f46e5; }
         .result-box { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 15px; margin-top: 15px; }
         .result-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 6px 0; }
         .result-row .lbl { color: #94a3b8; }
         .result-row .val { font-weight: 700; color: #34d399; }
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
-        @media(max-width: 768px) { .split-box { grid-template-columns: 1fr; } }
+        @media(max-width: 768px) { .title-block { flex-direction: column; align-items: flex-start; gap: 15px; } .split-box { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -51,94 +48,88 @@
             <nav>
                 <a href="index.html">Dashboard</a>
                 <a href="pm-tools.html" class="active">Product Tools</a>
-                <a href="loans.html">Project Tools</a>
+                <a href="projects.html">Project Tools</a>
                 <a href="analysis.html">Business Analysis</a>
-                <a href="groceries.html">Feature Examples</a>
             </nav>
         </div>
     </header>
     <main>
         <div class="title-block">
-            <h2>🚀 Product Management Operations Suite</h2>
-            <p>Interactive configurations for optimization control, data significance experiments, and release risk gating calculations.</p>
+            <div>
+                <h2>🚀 Product Management Suite</h2>
+            </div>
+            <div class="selector-box">
+                <select id="toolSelector" onchange="togglePMTool()">
+                    <option value="flags">🎛️ Feature Flags Configuration</option>
+                    <option value="experiment">🧪 A/B Test Size Calculator</option>
+                    <option value="velocity">📈 Burnup Release Forecaster</option>
+                </select>
+            </div>
         </div>
 
-        <div class="grid">
-            <!-- TOOL 1: FEATURE GATING VISUALIZER -->
-            <div class="panel">
-                <h3>🎛️ Feature Gating & Flags Configuration Visualizer</h3>
-                <div class="split-box">
-                    <div>
-                        <div class="toggle-row">
-                            <span>Enable Beta Tester Program</span>
-                            <label class="switch"><input type="checkbox" id="flagBeta" onchange="updateFlags()"><span class="slider"></span></label>
-                        </div>
-                        <div class="toggle-row">
-                            <span>Geographic Safe Gating (Region: EU)</span>
-                            <label class="switch"><input type="checkbox" id="flagEU" onchange="updateFlags()"><span class="slider"></span></label>
-                        </div>
-                        <div class="toggle-row">
-                            <span>Emergency Kill-Switch (Dark Mode Override)</span>
-                            <label class="switch"><input type="checkbox" id="flagKill" onchange="updateFlags()"><span class="slider"></span></label>
-                        </div>
-                    </div>
-                    <div class="preview-window" id="appMockPreview">
-                        <span id="previewBadge" class="badge" style="background: #334155; color: #94a3b8;">Standard Production Build</span>
-                        <h4 id="previewTitle" style="font-size: 1.1rem; margin-bottom: 8px; color: #fff;">Core Feature Infrastructure Active</h4>
-                        <p id="previewText" style="color: #64748b; font-size: 0.75rem; max-width: 300px;">Viewing the baseline layout configurations initialized for generic user segments.</p>
-                        <div id="euConsentBlock" style="display: none; margin-top: 15px; padding: 8px; border: 1px solid #ef4444; color: #f87171; background: rgba(239,68,68,0.05); font-size: 0.65rem; border-radius: 6px; font-weight: 600;">⚠️ GDPR Compliance Active: External data pipelines strictly intercepted.</div>
+        <!-- DROP-DOWN TABS MODULES -->
+        <div id="panel-flags" class="tool-panel active">
+            <div class="split-box">
+                <div>
+                    <div class="toggle-row"><span>Enable Beta Tester Program</span><label class="switch"><input type="checkbox" id="flagBeta" onchange="updateFlags()"><span class="slider"></span></label></div>
+                    <div class="toggle-row"><span>Geographic Safe Gating (Region: EU)</span><label class="switch"><input type="checkbox" id="flagEU" onchange="updateFlags()"><span class="slider"></span></label></div>
+                    <div class="toggle-row"><span>Emergency Dark Mode Override</span><label class="switch"><input type="checkbox" id="flagKill" onchange="updateFlags()"><span class="slider"></span></label></div>
+                </div>
+                <div class="preview-window" id="appMockPreview">
+                    <span id="previewBadge" class="badge" style="background: #334155; color: #94a3b8;">Production Build</span>
+                    <h4 id="previewTitle" style="font-size: 1.1rem; margin-bottom: 8px; color: #fff;">Base App Interface Active</h4>
+                    <p id="previewText" style="color: #64748b; font-size: 0.75rem; max-width: 300px;">Viewing the baseline layout configurations initialized for generic user segments.</p>
+                    <div id="euConsentBlock" style="display: none; margin-top: 15px; padding: 8px; border: 1px solid #ef4444; color: #f87171; background: rgba(239,68,68,0.05); font-size: 0.65rem; border-radius: 6px; font-weight: 600;">⚠️ GDPR Compliance Active: Data tunnels safe-gated.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-experiment" class="tool-panel">
+            <div class="split-box">
+                <div>
+                    <div class="form-group"><label>Daily Webpage Traffic (Unique Users)</label><input type="number" id="abTraffic" value="5000"></div>
+                    <div class="form-group"><label>Baseline Conversion Rate (%)</label><input type="number" id="abBaseConv" value="3.0" step="0.1"></div>
+                    <div class="form-group"><label>MDE Target (% Target Increase)</label><input type="number" id="abMde" value="10"></div>
+                    <button onclick="calculateABSize()" class="btn-calc">Analyze Experiment Horizons</button>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <div class="result-box">
+                        <div class="result-row"><div class="lbl">Required Sample Size (Combined):</div><div id="sampleSizeOutput" class="val" style="color: #fff;">0 Users</div></div>
+                        <div class="result-row"><div class="lbl">Minimum Run Duration:</div><div id="durationOutput" class="val" style="color: #fbbf24;">0 Days</div></div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- TOOL 2: A/B TEST SAMPLE SIZE ESTIMATOR -->
-            <div class="panel">
-                <h3>🧪 Product Experiment Sample Size Estimator</h3>
-                <div class="split-box">
-                    <div>
-                        <div class="form-group">
-                            <label>Daily Webpage Traffic (Unique Users)</label>
-                            <input type="number" id="abTraffic" value="5000">
-                        </div>
-                        <div class="form-group">
-                            <label>Baseline Conversion Rate (%)</label>
-                            <input type="number" id="abBaseConv" value="3.0" step="0.1">
-                        </div>
-                        <div class="form-group">
-                            <label>Minimum Detectable Effect (MDE Target % Increase)</label>
-                            <input type="number" id="abMde" value="10" step="1">
-                        </div>
-                        <button onclick="calculateABSize()" class="btn-calc">Analyze Experiment Horizons</button>
-                    </div>
-                    <div style="display: flex; flex-direction: column; justify-content: center;">
-                        <div class="result-box">
-                            <div class="result-row"><div class="lbl">Required Total Sample Size (Combined):</div><div id="sampleSizeOutput" class="val" style="color: #fff;">0 Users</div></div>
-                            <div class="result-row"><div class="lbl">Minimum Run Duration:</div><div id="durationOutput" class="val" style="color: #fbbf24;">0 Days</div></div>
-                            <div class="result-row"><div class="lbl">Statistical Power / Confidence Index:</div><div class="val">80% / 95% (Standard)</div></div>
-                        </div>
+        <div id="panel-velocity" class="tool-panel">
+            <div class="split-box">
+                <div>
+                    <div class="form-group"><label>Total Backlog Scope (Story Points)</label><input type="number" id="vBacklog" value="180"></div>
+                    <div class="form-group"><label>Velocity History (Points Per Week)</label><input type="text" id="vHistory" value="22, 30, 25, 28, 15"></div>
+                    <button onclick="calculateVelocity()" class="btn-calc">Project Release Date</button>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <div class="result-box">
+                        <div class="result-row"><div class="lbl">Rolling Speed Average:</div><div id="avgVelocityOutput" class="val" style="color: #fff;">0.0 Points/Wk</div></div>
+                        <div class="result-row"><div class="lbl">Estimated Delivery Horizon:</div><div id="weeksOutput" class="val" style="color: #fbbf24;">0.0 Weeks</div></div>
                     </div>
                 </div>
             </div>
+        </div>
+    </main>
+    <footer>&copy; 2026 Violet Chai. Pure local functional operational dashboards.</footer>
 
-            <!-- TOOL 3: AGILE VELOCITY FORECASTER -->
-            <div class="panel">
-                <h3>📈 Burnup / Burndown Velocity Forecaster</h3>
-                <div class="split-box">
-                    <div>
-                        <div class="form-group">
-                            <label>Total Backlog Scope (Story Points Left)</label>
-                            <input type="number" id="vBacklog" value="180">
-                        </div>
-                        <div class="form-group">
-                            <label>Historical Velocity History (Comma Points Per Week)</label>
-                            <input type="text" id="vHistory" value="22, 30, 25, 28, 15">
-                        </div>
-                        <button onclick="calculateVelocity()" class="btn-calc">Project Release Date</button>
-                    </div>
-Calculated Rolling Speed Average:0.0 Points/WkEstimated Delivery Horizon:0.0 WeeksRisk Factor Mitigation (Buffer Added):0.0 Weeks (20% Lag)© 2026 Violet Chai. Pure local programmatic release operations architecture.
+    <script>
+        function togglePMTool() {
+            const chosen = document.getElementById('toolSelector').value;
+            document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('panel-' + chosen).classList.add('active');
+        }
 
-function updateFlags() {const beta = document.getElementById('flagBeta').checked;const eu = document.getElementById('flagEU').checked;const kill = document.getElementById('flagKill').checked;const preview = document.getElementById('appMockPreview');const badge = document.getElementById('previewBadge');const title = document.getElementById('previewTitle');const txt = document.getElementById('previewText');const gdpr = document.getElementById('euConsentBlock');// Apply Emergency Dark Mode Override Kill-Switch Flag Rulesif (kill) {preview.style.background = "#ffffff";preview.style.borderColor = "#cbd5e1";title.style.color = "#0f172a";txt.style.color = "#475569";} else {preview.style.background = "#0f172a";preview.style.borderColor = "#334155";title.style.color = "#ffffff";txt.style.color = "#64748b";}// Combine Active Flag Nodes for Conditional Logic Layout Shiftsif (beta) {badge.textContent = "Beta Flight Active Group";badge.style.background = "rgba(99,102,241,0.2)";badge.style.color = "#818cf8";title.textContent = "✨ Experimental Next-Gen UI Injected";txt.textContent = "Viewing new micro-interaction components restricted to verified tester tokens.";} else {badge.textContent = "Standard Production Build";badge.style.background = "#334155";badge.style.color = "#94a3b8";title.textContent = "Core Feature Infrastructure Active";txt.textContent = "Viewing the baseline layout configurations initialized for generic user segments.";}gdpr.style.display = eu ? "block" : "none";}function calculateABSize() {const N = parseFloat(document.getElementById('abTraffic').value) || 1;const p = parseFloat(document.getElementById('abBaseConv').value) / 100;const mde = parseFloat(document.getElementById('abMde').value) / 100;if (p <= 0 || mde <= 0) return;// Programmable approach to Evan Miller's Amortized Sample Size Rule:// $Sample Size = \frac{16 \times p \times (1-p)}{(p \times MDE)^2}$const absoluteEffect = p * mde;const requiredSampleSize = Math.ceil((16 * p * (1 - p)) / (absoluteEffect * absoluteEffect));const durationDays = Math.ceil(requiredSampleSize / N);document.getElementById('sampleSizeOutput').textContent = requiredSampleSize.toLocaleString() + ' Visitors';document.getElementById('durationOutput').textContent = durationDays + ' Full Operational Days';}function calculateVelocity() {const backlog = parseFloat(document.getElementById('vBacklog').value) || 0;const historyText = document.getElementById('vHistory').value;const speedHistory = historyText.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));if (speedHistory.length === 0 || backlog <= 0) return;const sum = speedHistory.reduce((acc, curr) => acc + curr, 0);const avgVelocity = sum / speedHistory.length;const targetWeeks = backlog / avgVelocity;const bufferedWeeks = targetWeeks * 1.20; // 20% scope-creep risk factor protection bufferdocument.getElementById('avgVelocityOutput').textContent = avgVelocity.toFixed(1) + ' Story Points/Wk';document.getElementById('weeksOutput').textContent = targetWeeks.toFixed(1) + ' Development Weeks';document.getElementById('bufferedWeeksOutput').textContent = bufferedWeeks.toFixed(1) + ' Wks (Includes Contingency)';}window.onload = function() {updateFlags();calculateABSize();calculateVelocity();}
-
+        function updateFlags() {
+            const beta = document.getElementById('flagBeta').checked;
+            const eu = document.getElementById('flagEU').checked;
+const kill = document.getElementById('flagKill').checked;const preview = document.getElementById('appMockPreview');const badge = document.getElementById('previewBadge');const title = document.getElementById('previewTitle');const txt = document.getElementById('previewText');const gdpr = document.getElementById('euConsentBlock');if (kill) {preview.style.background = "#ffffff"; preview.style.borderColor = "#cbd5e1";title.style.color = "#0f172a"; txt.style.color = "#475569";} else {preview.style.background = "#0f172a"; preview.style.borderColor = "#334155";title.style.color = "#ffffff"; txt.style.color = "#64748b";}if (beta) {badge.textContent = "Beta Track Group"; badge.style.background = "rgba(99,102,241,0.2)"; badge.style.color = "#818cf8";title.textContent = "✨ Next-Gen UI Elements Injected"; txt.textContent = "Viewing newly engineered components restricted to testing group segments.";} else {badge.textContent = "Production Build"; badge.style.background = "#334155"; badge.style.color = "#94a3b8";title.textContent = "Base App Interface Active"; txt.textContent = "Viewing the baseline layout configurations initialized for generic user segments.";}gdpr.style.display = eu ? "block" : "none";}function calculateABSize() {const N = parseFloat(document.getElementById('abTraffic').value) || 1;const p = parseFloat(document.getElementById('abBaseConv').value) / 100;const mde = parseFloat(document.getElementById('abMde').value) / 100;if (p <= 0 || mde <= 0) return;const absoluteEffect = p * mde;const requiredSampleSize = Math.ceil((16 * p * (1 - p)) / (absoluteEffect * absoluteEffect));document.getElementById('sampleSizeOutput').textContent = requiredSampleSize.toLocaleString() + ' Visitors';document.getElementById('durationOutput').textContent = Math.ceil(requiredSampleSize / N) + ' Operational Days';}function calculateVelocity() {const backlog = parseFloat(document.getElementById('vBacklog').value) || 0;const speedHistory = document.getElementById('vHistory').value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));if (speedHistory.length === 0 || backlog <= 0) return;const avgVelocity = speedHistory.reduce((acc, curr) => acc + curr, 0) / speedHistory.length;document.getElementById('avgVelocityOutput').textContent = avgVelocity.toFixed(1) + ' Points/Wk';document.getElementById('weeksOutput').textContent = (backlog / avgVelocity).toFixed(1) + ' Development Weeks';}window.onload = function() { updateFlags(); calculateABSize(); calculateVelocity(); }
 </script>
 </body>
 </html>

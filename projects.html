@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Violet's Portfolio | Project Tracker</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: #0f172a; color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: #1e293b; border-bottom: 1px solid #334155; padding: 15px 30px; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: #fff; }
+        nav a { text-decoration: none; color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin-left: 8px; border-radius: 8px; }
+        nav a.active { background: #6366f1; color: #fff; }
+        nav a:hover:not(.active) { color: #fff; background: #334155; }
+        main { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; }
+        .title-block { border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; }
+        .title-block h2 { font-size: 1.5rem; color: #fff; }
+        .title-block p { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; }
+        .panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px; margin-bottom: 30px; }
+        .form-row { display: grid; grid-template-columns: 3fr 2fr 1fr; gap: 15px; align-items: end; }
+        .field { display: flex; flex-direction: column; gap: 6px; }
+        .field label { font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
+        .field input, .field select { background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 0.85rem; outline: none; }
+        .btn-add { background: #6366f1; color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 11px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .btn-add:hover { background: #4f46e5; }
+        .timeline-container { display: flex; flex-direction: column; gap: 20px; position: relative; padding-left: 20px; border-left: 2px solid #334155; margin-top: 10px; }
+        .timeline-item { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 15px; position: relative; display: flex; justify-content: space-between; align-items: center; }
+        .timeline-item::before { content: ""; position: absolute; left: -27px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; border-radius: 50%; background: #475569; border: 2px solid #0f172a; }
+        .timeline-item.complete::before { background: #10b981; }
+        .timeline-item.progress::before { background: #fbbf24; }
+        .badge { font-size: 0.65rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; }
+        .badge-done { background: rgba(16,185,129,0.1); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+        .badge-working { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+        .badge-backlog { background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
+        @media(max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">⚡ Violet.Dev</div>
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="pm-tools.html">Product Tools</a>
+                <a href="projects.html" class="active">Project Tools</a>
+                <a href="analysis.html">Business Analysis</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="title-block">
+            <h2>📅 Project Milestone & Lifecycle Roadmap</h2>
+            <p>Track delivery trajectories, log pipeline objectives, and view dynamic development timelines natively.</p>
+        </div>
+
+        <div class="panel">
+            <div class="form-row">
+                <div class="field"><label>Milestone Objective Target</label><input type="text" id="milestoneName" placeholder="e.g., Deploy Single Sign-On Authentication Gateway"></div>
+                <div class="field">
+                    <label>Operational Lifecycle Status</label>
+                    <select id="milestoneStatus">
+                        <option value="complete">✅ Lifecycle Completed</option>
+                        <option value="progress">⚡ Active In-Progress</option>
+                        <option value="backlog">💤 Backlog Queue Target</option>
+                    </select>
+                </div>
+                <button onclick="addMilestone()" class="btn-add">Add Node</button>
+            </div>
+        </div>
+
+        <div class="timeline-container" id="timelineGrid"></div>
+    </main>
+    <footer>&copy; 2026 Violet Chai. Pure uncompromised local timeline matrices.</footer>
+
+    <script>
+        const defaultMilestones = [
+            { name: "Execute Initial User Flow Discoveries", status: "complete" },
+            { name: "Optimize Finance Repayment Algorithms", status: "progress" },
+            { name: "Configure Native Browser Storage PWA Caching", status: "backlog" }
+        ];
+
+        let milestones = JSON.parse(localStorage.getItem('violet_portfolio_milestones')) || defaultMilestones;
+
+        function renderTimeline() {
+            const container = document.getElementById('timelineGrid');
+            container.innerHTML = '';
+            milestones.forEach((m, idx) => {
+                let badgeCls = 'badge-backlog', statusText = 'Queue Backlog', itemCls = '';
+                if (m.status === 'complete') { badgeCls = 'badge-done'; statusText = 'Completed'; itemCls = 'complete'; }
+                if (m.status === 'progress') { badgeCls = 'badge-working'; statusText = 'Active Tracking'; itemCls = 'progress'; }
+
+                const row = `<div class="timeline-item ${itemCls}">` +
+                    `<div><h4 style="font-size:0.9rem; color:#fff; margin-bottom:4px;">${m.name}</h4><span class="badge ${badgeCls}">${statusText}</span></div>` +
+                    `<button onclick="deleteMilestone(${idx})" style="background:transparent; border:none; color:#ef4444; font-size:0.75rem; font-weight:700; cursor:pointer;">Delete</button>` +
+                    `</div>`;
+                container.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        function addMilestone() {
+            const name = document.getElementById('milestoneName').value.trim();
+            const status = document.getElementById('milestoneStatus').value;
+            if (!name) return;
+            milestones.push({ name, status });
+            localStorage.setItem('violet_portfolio_milestones', JSON.stringify(milestones));
+            renderTimeline();
+            document.getElementById('milestoneName').value = '';
+        }
+
+        function deleteMilestone(idx) {
+            milestones.splice(idx, 1);
+            localStorage.setItem('violet_portfolio_milestones', JSON.stringify(milestones));
+            renderTimeline();
+        }
+
+        window.onload = renderTimeline;
+    </script>
+</body>
+</html>
