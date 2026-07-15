@@ -23,6 +23,14 @@
         .card p { color: #94a3b8; font-size: 0.85rem; line-height: 1.6; }
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
     </style>
+        <!-- PWA Installation Assets -->
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+
 </head>
 <body>
     <header>

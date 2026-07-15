@@ -46,6 +46,14 @@
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
         @media(max-width: 768px) { .header-row { flex-direction: column; align-items: flex-start; } .form-grid { grid-template-columns: 1fr; } }
     </style>
+        <!-- PWA Installation Assets -->
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+
 </head>
 <body>
     <header>
