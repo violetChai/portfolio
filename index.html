@@ -1,141 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance & Retail Dashboard Portfolio</title>
-    <!-- Tailwind CSS Engine -->
+    <title>Violet's Portfolio | Dashboard</title>
+    <!-- Corrected Tailwind CSS Engine Link -->
     <script src="https://jsdelivr.net"></script>
+    <!-- Corrected Google Fonts Links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
 </head>
-<body class="bg-[#fafafa] text-slate-800 font-sans antialiased selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased">
 
-    <!-- Global App Header Layout -->
-    <header class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 transition-all duration-300">
+    <!-- NAVIGATION HEADER -->
+    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="h-9 w-9 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm shadow-blue-200">📊</div>
-                <span class="text-lg font-bold tracking-tight text-slate-900 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">FinRetail Hub</span>
+                <div class="h-10 w-10 bg-gradient-to-tr from-indigo-500 to-pink-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg">⚡</div>
+                <span class="text-lg font-extrabold tracking-tight text-white">Violet.Dev</span>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide text-slate-600">
-                <a href="#loan-suite" class="hover:text-blue-600 transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 hover:after:w-full after:transition-all">Loan Amortization</a>
-                <a href="#grocery-tracker" class="hover:text-blue-600 transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 hover:after:w-full after:transition-all">Grocery Analytics</a>
+            <nav class="flex space-x-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 text-xs font-bold">
+                <a href="index.html" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white shadow-sm">Dashboard</a>
+                <a href="loans.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">Home Loans</a>
+                <a href="groceries.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">Grocery Tracker</a>
+                <a href="about.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">About Me</a>
             </nav>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-12 space-y-16">
-
-        <!-- SECTION 1: DESIGN HERO CARD -->
-        <section class="relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-8 md:p-12 overflow-hidden shadow-xl shadow-slate-200/50">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_45%)]"></div>
+    <!-- CONTENT -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-6 py-12 space-y-10">
+        <section class="relative bg-gradient-to-br from-slate-800 via-indigo-950 to-slate-900 border border-slate-800 rounded-3xl p-8 md:p-12 overflow-hidden shadow-2xl">
             <div class="relative max-w-2xl space-y-4">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">✨ Full-Stack Utility Portfolio</span>
-                <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">Interactive Financial Planning & Retail Tools</h1>
-                <p class="text-slate-400 text-sm md:text-base leading-relaxed">A clean UI project testing algorithmic banking calculation adjustments alongside localized dynamic catalog array state processing handlers.</p>
-            </div>
-        </section>
-
-        <!-- SECTION 2: LOAN CALCULATOR SUITE -->
-        <section id="loan-suite" class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 md:p-8 space-y-8">
-            <div>
-                <h2 class="text-xl font-bold text-slate-900 tracking-tight">🏠 Home Loan Calculator Suite</h2>
-                <p class="text-xs text-slate-400 mt-1">Calculate real-time payment frequencies and measure accurate interest delta differences over fixed loan timelines.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <!-- Input Panel Layout -->
-                <div class="lg:col-span-5 bg-slate-50 border border-slate-200/60 rounded-2xl p-6 space-y-5">
-                    <div class="space-y-1">
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Loan Principal Amount</label>
-                        <div class="relative">
-                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 font-semibold text-slate-400 text-sm">$</span>
-                            <input type="number" id="loanAmount" value="500000" class="w-full bg-white border border-slate-200 rounded-xl pl-8 pr-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Interest Rate (% p.a.)</label>
-                            <input type="number" id="interestRate" value="6.5" step="0.01" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Loan Term (Years)</label>
-                            <input type="number" id="loanTerm" value="30" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Payment Cycle</label>
-                            <select id="frequency" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all cursor-pointer">
-                                <option value="12">Monthly</option>
-                                <option value="26">Fortnightly</option>
-                            </select>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Extra Repayment</label>
-                            <div class="relative">
-                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">$</span>
-                                <input type="number" id="extraPayment" value="200" class="w-full bg-white border border-slate-200 rounded-xl pl-7 pr-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button onclick="calculateLoan()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm py-3 rounded-xl transition-all duration-200 shadow-sm cursor-pointer hover:translate-y-[-1px] active:translate-y-0">Execute Calculations</button>
-                </div>
-
-                <!-- Display Results Metric Breakdown -->
-                <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-6 bg-blue-50/50 border border-blue-100 rounded-2xl transition-all hover:bg-blue-50">
-                            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-1">Standard Base Payment</span>
-                            <span id="baseRepaymentResult" class="text-3xl font-black text-slate-900">$0.00</span>
-                        </div>
-                        <div class="p-6 bg-emerald-50/50 border border-emerald-100 rounded-2xl transition-all hover:bg-emerald-50">
-                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block mb-1">Accelerated Repayment</span>
-                            <span id="totalRepaymentResult" class="text-3xl font-black text-slate-900">$0.00</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-br from-amber-50/60 to-orange-50/40 border border-amber-200/70 rounded-2xl p-6 space-y-4">
-                        <h3 class="text-xs font-bold text-amber-800 uppercase tracking-widest flex items-center gap-2">✨ Direct Extra Payment Metrics Impact</h3>
-                        <div class="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
-                            <div class="text-slate-500 font-medium">Total Project Term Reduction:</div>
-                            <div id="timeSaved" class="font-bold text-right text-amber-900 text-base">0 Years</div>
-                            <div class="text-slate-500 font-medium">Accumulated Interest Retained:</div>
-                            <div id="interestSaved" class="font-bold text-right text-emerald-700 text-base">$0.00</div>
-                        </div>
-                    </div>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">🚀 Live Interactive Project</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">FinRetail Web Suite</h1>
+                <p class="text-slate-400 text-sm leading-relaxed">Welcome to my custom utility portfolio workspace. This platform features clean, professional tool configurations built completely from scratch using vanilla web standards.</p>
+                <div class="pt-2 flex flex-wrap gap-3">
+                    <a href="loans.html" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-lg transition hover:-translate-y-0.5">Launch Loan Suite</a>
+                    <a href="groceries.html" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs rounded-xl transition hover:-translate-y-0.5">Open Grocery Tracker</a>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: GROCERY SPECIALS TRACKER -->
-        <section id="grocery-tracker" class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 md:p-8 space-y-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-b border-slate-100 pb-6">
-                <div>
-                    <h2 class="text-xl font-bold text-slate-900 tracking-tight">🛒 Live Catalog Analytics Tracker</h2>
-                    <p class="text-xs text-slate-400 mt-1">Isolate processing data parameters and monitor active retail retail special arrays across local store systems.</p>
-                </div>
-                
-                               <!-- Filters Controls Toolbar Layout -->
-                <div class="flex flex-wrap gap-2 items-center">
-                    <button onclick="filterGroceries('All')" class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition cursor-pointer">All Outlets</button>
-                    <button onclick="filterGroceries('Woolworths')" class="px-3.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold rounded-xl transition cursor-pointer">Woolworths</button>
-                    <button onclick="filterGroceries('Coles')" class="px-3.5 py-1.5 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold rounded-xl transition cursor-pointer">Coles</button>
-                    <button onclick="filterGroceries('Aldi')" class="px-3.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold rounded-xl transition cursor-pointer">Aldi</button>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-800/40 border border-slate-800/80 rounded-2xl p-6 space-y-3">
+                <div class="text-2xl">🏠</div>
+                <h3 class="text-base font-bold text-white">Mortgage Amortization Logic</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Calculates basic baseline loan repayment parameters and maps exact term length reduction metrics when supplementary extra payments are injected into periodic cycle loops.</p>
             </div>
+            <div class="bg-slate-800/40 border border-slate-800/80 rounded-2xl p-6 space-y-3">
+                <div class="text-2xl">🛒</div>
+                <h3 class="text-base font-bold text-white">Dynamic Retail State Arrays</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Tracks half-price grocery specials using browser memory pools. Allows on-the-fly table filtering by major national storefront brand nodes.</p>
+            </div>
+        </div>
+    </main>
 
-            <!-- Add Item Form Container -->
-            <div class="bg-slate-50 border border-slate-200/60 rounded-2xl p-5">
-                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Add Live Special Deal</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
-                    <div class="space-y-1">
-                        <label class="block text-[11px] font-bold text-slate-400 uppercase">Outlet</label>
-                        <select id="newStore" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20">
-                            <option>Woolworths</option>
-                            <option>Coles</option>
-                            <option>Aldi</option>
-                        </select>
-                    </div>
+    <footer class="bg-slate-950 border-t border-slate-800/60 py-8 text-center text-xs font-medium text-slate-500">
+        &copy; 2026 Violet Chai. Powered by modern vanilla execution engines.
+    </footer>
+</body>
+</html>

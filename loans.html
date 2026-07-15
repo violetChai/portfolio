@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Violet's Portfolio | Home Loans</title>
+    <!-- Corrected Tailwind CSS Engine Link -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- Corrected Google Fonts Links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="h-10 w-10 bg-gradient-to-tr from-indigo-500 to-pink-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg">⚡</div>
+                <span class="text-lg font-extrabold tracking-tight text-white">Violet.Dev</span>
+            </div>
+            <nav class="flex space-x-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 text-xs font-bold">
+                <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">Dashboard</a>
+                <a href="loans.html" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white shadow-sm">Home Loans</a>
+                <a href="groceries.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">Grocery Tracker</a>
+                <a href="about.html" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition">About Me</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-6 py-12 space-y-8">
+        <div class="border-b border-slate-800 pb-4">
+            <h2 class="text-2xl font-extrabold text-white tracking-tight">🏠 Home Loan Calculator Suite</h2>
+            <p class="text-xs text-slate-400 mt-1">Adjust core principal parameters and evaluate interest savings derived from compounding extra repayments.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Inputs Box Container -->
+            <div class="lg:col-span-5 bg-slate-800/50 border border-slate-800 rounded-2xl p-6 space-y-5 shadow-inner">
+                <div class="space-y-1.5">
+                    <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Loan Principal Amount</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 font-semibold text-slate-500 text-sm">$</span>
+                        <input type="number" id="loanAmount" value="500000" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1.5">
+                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Interest Rate (% p.a.)</label>
+                        <input type="number" id="interestRate" value="6.5" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Loan Term (Years)</label>
+                        <input type="number" id="loanTerm" value="30" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1.5">
+                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Payment Frequency</label>
+                        <select id="frequency" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer">
+                            <option value="12">Monthly</option>
+                            <option value="26">Fortnightly</option>
+                        </select>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Extra Repayment ($/period)</label>
+                        <div class="relative">
+                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm">$</span>
+                            <input type="number" id="extraPayment" value="200" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-8 pr-4 py-2.5 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="calculateLoan()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs py-3.5 rounded-xl transition cursor-pointer">Recalculate Amortization Metrics</button>
+            </div>
+
+            <!-- Output Display Container -->
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-6 bg-slate-800/30 border border-slate-800 rounded-2xl">
+                        <span class="text-[11px] font-bold text-indigo-400 uppercase tracking-widest block mb-1">Standard Base Payment</span>
+                        <span id="baseRepaymentResult" class="text-3xl font-black text-white">$0.00</span>
+                    </div>
+                    <div class="p-6 bg-slate-800/30 border border-slate-800 rounded-2xl">
+                        <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-widest block mb-1">Accelerated Payment (+Extra)</span>
+                        <span id="totalRepaymentResult" class="text-3xl font-black text-white">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-indigo-950/40 via-slate-800/50 to-slate-800/30 border border-indigo-500/20 rounded-2xl p-6 space-y-4">
+                    <h3 class="text-xs font-bold text-indigo-300 uppercase tracking-widest">✨ Extra Repayment Acceleration Gains</h3>
+                    <div class="grid grid-cols-2 gap-y-3 text-xs border-t border-slate-700/50 pt-3">
+                        <div class="text-slate-400 font-medium">Total Loan Term Cut Short By:</div>
+                        <div id="timeSaved" class="font-bold text-right text-amber-400 text-sm">0 Years</div>
+                        <div class="text-slate-400 font-medium">Total Interest Capital Conserved:</div>
+                        <div id="interestSaved" class="font-bold text-right text-emerald-400 text-sm">$0.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800/60 py-8 text-center text-xs font-medium text-slate-500">
+        &copy; 2026 Violet Chai. Powered by modern vanilla execution engines.
+    </footer>
+
+    <!-- JavaScript Logical Engine -->
+    <script>
+        function calculateLoan() {
+            const P = parseFloat(document.getElementById('loanAmount').value);
+            const annualRate = parseFloat(document.getElementById('interestRate').value) / 100;
+            const totalYears = parseFloat(document.getElementById('loanTerm').value);
+            const n = parseInt(document.getElementById('frequency').value);
+            const extra = parseFloat(document.getElementById('extraPayment').value) || 0;
+
+            const r = annualRate / n;
+            const totalPayments = totalYears * n;
+
+            const basePayment = (P * r * Math.pow(1 + r, totalPayments)) / (Math.pow(1 + r, totalPayments) - 1);
+            const totalPaymentWithExtra = basePayment + extra;
+
+            document.getElementById('baseRepaymentResult').textContent = `$${basePayment.toFixed(2)}`;
+            document.getElementById('totalRepaymentResult').textContent = `$${totalPaymentWithExtra.toFixed(2)}`;
+
+            let balanceBase = P, balanceExtra = P;
+            let totalInterestBase = 0, totalInterestExtra = 0;
+            let basePeriods = 0, extraPeriods = 0;
+
+            while (balanceBase > 0 && basePeriods < 1200) {
+                let interest = balanceBase * r;
+                totalInterestBase += interest;
+                balanceBase = balanceBase + interest - basePayment;
+                basePeriods++;
+            }
+
+            while (balanceExtra > 0 && extraPeriods < 1200) {
+                let interest = balanceExtra * r;
+                totalInterestExtra += interest;
+                let currentPayment = Math.min(basePayment + extra, balanceExtra + interest);
+                balanceExtra = balanceExtra + interest - currentPayment;
+                extraPeriods++;
+            }
+
+                        const interestSaved = Math.max(0, totalInterestBase - totalInterestExtra);
+            const periodsSaved = Math.max(0, basePeriods - extraPeriods);
+            const yearsSaved = (periodsSaved / n).toFixed(1);
+
+            document.getElementById('interestSaved').textContent = `$${interestSaved.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('timeSaved').textContent = `${yearsSaved} Years`;
+        }
+        window.onload = calculateLoan;
+    </script>
+</body>
+</html>
