@@ -1,155 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance & Grocery Portfolio</title>
-    <!-- Tailwind CSS for modern, responsive styling -->
+    <title>Finance & Retail Dashboard Portfolio</title>
+    <!-- Tailwind CSS Engine -->
     <script src="https://jsdelivr.net"></script>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+<body class="bg-[#fafafa] text-slate-800 font-sans antialiased selection:bg-blue-500 selection:text-white">
 
-    <!-- Navigation Header -->
-    <header class="bg-blue-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-tight">DevPortfolio</h1>
-            <nav class="space-x-6 font-medium">
-                <a href="#loan-suite" class="hover:text-blue-200 transition">Home Loan Calculator</a>
-                <a href="#grocery-tracker" class="hover:text-blue-200 transition">Grocery Tracker</a>
+    <!-- Global App Header Layout -->
+    <header class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="h-9 w-9 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm shadow-blue-200">📊</div>
+                <span class="text-lg font-bold tracking-tight text-slate-900 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">FinRetail Hub</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide text-slate-600">
+                <a href="#loan-suite" class="hover:text-blue-600 transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 hover:after:w-full after:transition-all">Loan Amortization</a>
+                <a href="#grocery-tracker" class="hover:text-blue-600 transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 hover:after:w-full after:transition-all">Grocery Analytics</a>
             </nav>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-16">
 
-        <!-- SECTION 1: HOME LOAN CALCULATOR SUITE -->
-        <section id="loan-suite" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <div class="border-b border-gray-100 pb-4 mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">🏠 Home Loan Calculator Suite</h2>
-                <p class="text-sm text-gray-500 mt-1">Calculate standard repayments and see how extra contributions slash your loan term.</p>
+        <!-- SECTION 1: DESIGN HERO CARD -->
+        <section class="relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-8 md:p-12 overflow-hidden shadow-xl shadow-slate-200/50">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_45%)]"></div>
+            <div class="relative max-w-2xl space-y-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">✨ Full-Stack Utility Portfolio</span>
+                <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">Interactive Financial Planning & Retail Tools</h1>
+                <p class="text-slate-400 text-sm md:text-base leading-relaxed">A clean UI project testing algorithmic banking calculation adjustments alongside localized dynamic catalog array state processing handlers.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: LOAN CALCULATOR SUITE -->
+        <section id="loan-suite" class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 md:p-8 space-y-8">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900 tracking-tight">🏠 Home Loan Calculator Suite</h2>
+                <p class="text-xs text-slate-400 mt-1">Calculate real-time payment frequencies and measure accurate interest delta differences over fixed loan timelines.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Inputs Form -->
-                <div class="space-y-4 bg-gray-50 p-5 rounded-xl border border-gray-200">
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Loan Amount ($)</label>
-                        <input type="number" id="loanAmount" value="500000" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Interest Rate (% p.a.)</label>
-                            <input type="number" id="interestRate" value="6.5" step="0.01" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Loan Term (Years)</label>
-                            <input type="number" id="loanTerm" value="30" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Input Panel Layout -->
+                <div class="lg:col-span-5 bg-slate-50 border border-slate-200/60 rounded-2xl p-6 space-y-5">
+                    <div class="space-y-1">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Loan Principal Amount</label>
+                        <div class="relative">
+                            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 font-semibold text-slate-400 text-sm">$</span>
+                            <input type="number" id="loanAmount" value="500000" class="w-full bg-white border border-slate-200 rounded-xl pl-8 pr-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
                         </div>
                     </div>
+
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Payment Frequency</label>
-                            <select id="frequency" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Interest Rate (% p.a.)</label>
+                            <input type="number" id="interestRate" value="6.5" step="0.01" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Loan Term (Years)</label>
+                            <input type="number" id="loanTerm" value="30" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Payment Cycle</label>
+                            <select id="frequency" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all cursor-pointer">
                                 <option value="12">Monthly</option>
                                 <option value="26">Fortnightly</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Extra Repayment ($/period)</label>
-                            <input type="number" id="extraPayment" value="200" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider">Extra Repayment</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">$</span>
+                                <input type="number" id="extraPayment" value="200" class="w-full bg-white border border-slate-200 rounded-xl pl-7 pr-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
+                            </div>
                         </div>
                     </div>
-                    <button onclick="calculateLoan()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition dynamic-btn shadow-sm cursor-pointer">Calculate Breakdown</button>
+
+                    <button onclick="calculateLoan()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm py-3 rounded-xl transition-all duration-200 shadow-sm cursor-pointer hover:translate-y-[-1px] active:translate-y-0">Execute Calculations</button>
                 </div>
 
-                <!-- Results Output Display -->
-                <div class="flex flex-col justify-between space-y-6">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
-                            <span class="text-xs font-medium text-blue-700 uppercase tracking-wider block mb-1">Base Repayment</span>
-                            <span id="baseRepaymentResult" class="text-2xl font-bold text-blue-900">$0.00</span>
+                <!-- Display Results Metric Breakdown -->
+                <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-6 bg-blue-50/50 border border-blue-100 rounded-2xl transition-all hover:bg-blue-50">
+                            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-1">Standard Base Payment</span>
+                            <span id="baseRepaymentResult" class="text-3xl font-black text-slate-900">$0.00</span>
                         </div>
-                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
-                            <span class="text-xs font-medium text-emerald-700 uppercase tracking-wider block mb-1">Total Repayment (+Extra)</span>
-                            <span id="totalRepaymentResult" class="text-2xl font-bold text-emerald-900">$0.00</span>
+                        <div class="p-6 bg-emerald-50/50 border border-emerald-100 rounded-2xl transition-all hover:bg-emerald-50">
+                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block mb-1">Accelerated Repayment</span>
+                            <span id="totalRepaymentResult" class="text-3xl font-black text-slate-900">$0.00</span>
                         </div>
                     </div>
-                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 space-y-3">
-                        <h3 class="text-sm font-bold text-amber-950 uppercase tracking-wider flex items-center">✨ Extra Repayment Impact</h3>
-                        <div class="grid grid-cols-2 gap-2 text-sm">
-                            <div class="text-amber-900">Time Saved:</div>
-                            <div id="timeSaved" class="font-bold text-right text-amber-950">0 years</div>
-                            <div class="text-amber-900">Total Interest Saved:</div>
-                            <div id="interestSaved" class="font-bold text-right text-amber-950">$0.00</div>
+
+                    <div class="bg-gradient-to-br from-amber-50/60 to-orange-50/40 border border-amber-200/70 rounded-2xl p-6 space-y-4">
+                        <h3 class="text-xs font-bold text-amber-800 uppercase tracking-widest flex items-center gap-2">✨ Direct Extra Payment Metrics Impact</h3>
+                        <div class="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
+                            <div class="text-slate-500 font-medium">Total Project Term Reduction:</div>
+                            <div id="timeSaved" class="font-bold text-right text-amber-900 text-base">0 Years</div>
+                            <div class="text-slate-500 font-medium">Accumulated Interest Retained:</div>
+                            <div id="interestSaved" class="font-bold text-right text-emerald-700 text-base">$0.00</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 2: GROCERY SPECIALS TRACKER -->
-        <section id="grocery-tracker" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <div class="border-b border-gray-100 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <!-- SECTION 3: GROCERY SPECIALS TRACKER -->
+        <section id="grocery-tracker" class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 md:p-8 space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-b border-slate-100 pb-6">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-800">🛒 Grocery Specials Tracker</h2>
-                    <p class="text-sm text-gray-500 mt-1">Track half-price specials and catalog deals across different supermarkets.</p>
+                    <h2 class="text-xl font-bold text-slate-900 tracking-tight">🛒 Live Catalog Analytics Tracker</h2>
+                    <p class="text-xs text-slate-400 mt-1">Isolate processing data parameters and monitor active retail retail special arrays across local store systems.</p>
                 </div>
-                <!-- Dynamic Filtering Controls -->
-                <div class="flex gap-2">
-                    <button onclick="filterGroceries('All')" class="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-semibold rounded-lg transition cursor-pointer">All Stores</button>
-                    <button onclick="filterGroceries('Woolworths')" class="px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-xs font-semibold rounded-lg transition cursor-pointer">Woolworths</button>
-                    <button onclick="filterGroceries('Coles')" class="px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-800 text-xs font-semibold rounded-lg transition cursor-pointer">Coles</button>
-                    <button onclick="filterGroceries('Aldi')" class="px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold rounded-lg transition cursor-pointer">Aldi</button>
-                </div>
-            </div>
-
-            <!-- Responsive Catalog Grid Table -->
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            <th class="py-3 px-4">Store</th>
-                            <th class="py-3 px-4">Item Name</th>
-                            <th class="py-3 px-4">Special Price</th>
-                            <th class="py-3 px-4">Normal Price</th>
-                            <th class="py-3 px-4">Discount</th>
-                        </tr>
-                    </thead>
-                    <tbody id="groceryTableBody" class="divide-y divide-gray-100 text-sm">
-                        <!-- Rendered by JavaScript dynamically -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Core Interactive Logic Script -->
-    <script>
-        // --- 1. LOAN CALCULATOR ENGINE ---
-        function calculateLoan() {
-            const P = parseFloat(document.getElementById('loanAmount').value);
-            const annualRate = parseFloat(document.getElementById('interestRate').value) / 100;
-            const totalYears = parseFloat(document.getElementById('loanTerm').value);
-            const n = parseInt(document.getElementById('frequency').value);
-            const extra = parseFloat(document.getElementById('extraPayment').value) || 0;
-
-            const r = annualRate / n;
-            const totalPayments = totalYears * n;
-
-            // Mathematical calculation for basic baseline amortization schedule payment:
-            // $M = P \frac{r(1+r)^N}{(1+r)^N - 1}$
-            const basePayment = (P * r * Math.pow(1 + r, totalPayments)) / (Math.pow(1 + r, totalPayments) - 1);
-            const totalPaymentWithExtra = basePayment + extra;
-
-            document.getElementById('baseRepaymentResult').textContent = `$${basePayment.toFixed(2)}`;
-            document.getElementById('totalRepaymentResult').textContent = `$${totalPaymentWithExtra.toFixed(2)}`;
-
-            // Amortization loop to capture exact date reductions and savings thresholds
-            let balanceBase = P;
-            let balanceExtra = P;
-            let totalInterestBase = 0;
-            let totalInterestExtra = 0;
-            let basePeriods = 0;
-            let extraPeriods = 0;// Simulate Standard Loan Journeywhile (balanceBase > 0 && basePeriods < 1200) {let interest = balanceBase * r;totalInterestBase += interest;balanceBase = balanceBase + interest - basePayment;basePeriods++;}// Simulate Extra Contributions Journeywhile (balanceExtra > 0 && extraPeriods < 1200) {let interest = balanceExtra * r;totalInterestExtra += interest;// Pay base payment + any extra contribution set by sliderlet currentPayment = Math.min(basePayment + extra, balanceExtra + interest);balanceExtra = balanceExtra + interest - currentPayment;extraPeriods++;}// Delta difference translationsconst interestSaved = Math.max(0, totalInterestBase - totalInterestExtra);const periodsSaved = Math.max(0, basePeriods - extraPeriods);const yearsSaved = (periodsSaved / n).toFixed(1);document.getElementById('interestSaved').textContent = $${interestSaved.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})};document.getElementById('timeSaved').textContent = ${yearsSaved} Years;}// --- 2. GROCERY TRACKER DATA & FILTER ENGINE ---// Mock data structure layout simulating a local portfolio database stateconst groceryData = [{ store: 'Woolworths', item: 'Cadbury Baking Chocolate 180g', specialPrice: 3.50, normalPrice: 7.00 },{ store: 'Coles', item: 'KB's Squid Rings 500g', specialPrice: 5.75, normalPrice: 11.50 },{ store: 'Aldi', item: 'Specially Selected Sourdough', specialPrice: 3.29, normalPrice: 4.49 },{ store: 'Woolworths', item: 'Chobani Greek Yogurt 1kg', specialPrice: 6.00, normalPrice: 8.50 },{ store: 'Coles', item: 'Twinings English Breakfast Tea 100pk', specialPrice: 7.55, normalPrice: 15.10 }];function renderTable(items) {const tbody = document.getElementById('groceryTableBody');tbody.innerHTML = '';items.forEach(item => {const savingsPct = (((item.normalPrice - item.specialPrice) / item.normalPrice) * 100).toFixed(0);// Set badge colors dynamically depending on store branding ruleslet storeBadgeColor = 'bg-gray-100 text-gray-800';if (item.store === 'Woolworths') storeBadgeColor = 'bg-emerald-100 text-emerald-800';if (item.store === 'Coles') storeBadgeColor = 'bg-red-100 text-red-800';if (item.store === 'Aldi') storeBadgeColor = 'bg-blue-100 text-blue-800';const row = <tr class="hover:bg-gray-50/70 transition"> <td class="py-3.5 px-4"><span class="px-2 py-1 rounded text-xs font-bold ${storeBadgeColor}">${item.store}</span></td> <td class="py-3.5 px-4 font-medium text-gray-900">${item.item}</td> <td class="py-3.5 px-4 font-bold text-emerald-600">$${item.specialPrice.toFixed(2)}</td> <td class="py-3.5 px-4 text-gray-400 line-through">$${item.normalPrice.toFixed(2)}</td> <td class="py-3.5 px-4"><span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${savingsPct}% OFF</span></td> </tr>;tbody.insertAdjacentHTML('beforeend', row);});}function filterGroceries(storeName) {if (storeName === 'All') {renderTable(groceryData);} else {const filtered = groceryData.filter(item => item.store === storeName);renderTable(filtered);}}// Initialize state arrays on load eventswindow.onload = () => {calculateLoan();renderTable(groceryData);
-            };
+                
+                <!-- Filters Controls Toolbar Layout -->
+                <div class="flex flex-wrap gap-2 items-center">
+All OutletsWoolworthsColesAldiAdd Live Special DealOutletWoolworthsColesAldiProduct DescriptionPromo Price ($)Retail Price ($)Commit Special To Array State© 2026 DevPortfolio. Built natively using Tailwind CSS & Vanilla ECMAScript Core logic.// --- 1. MORTGAGE AMORTIZATION CALCULATOR LOOPS ENGINE ---function calculateLoan() {const P = parseFloat(document.getElementById('loanAmount').value);const annualRate = parseFloat(document.getElementById('interestRate').value) / 100;const totalYears = parseFloat(document.getElementById('loanTerm').value);const n = parseInt(document.getElementById('frequency').value);const extra = parseFloat(document.getElementById('extraPayment').value) || 0;const r = annualRate / n;const totalPayments = totalYears * n;const basePayment = (P * r * Math.pow(1 + r, totalPayments)) / (Math.pow(1 + r, totalPayments) - 1);const totalPaymentWithExtra = basePayment + extra;document.getElementById('baseRepaymentResult').textContent = $${basePayment.toFixed(2)};document.getElementById('totalRepaymentResult').textContent = $${totalPaymentWithExtra.toFixed(2)};let balanceBase = P, balanceExtra = P;let totalInterestBase = 0, totalInterestExtra = 0;let basePeriods = 0, extraPeriods = 0;while (balanceBase > 0 && basePeriods < 1200) {let interest = balanceBase * r;totalInterestBase += interest;balanceBase = balanceBase + interest - basePayment;basePeriods++;}while (balanceExtra > 0 && extraPeriods < 1200) {let interest = balanceExtra * r;totalInterestExtra += interest;let currentPayment = Math.min(basePayment + extra, balanceExtra + interest);balanceExtra = balanceExtra + interest - currentPayment;extraPeriods++;}const interestSaved = Math.max(0, totalInterestBase - totalInterestExtra);const periodsSaved = Math.max(0, basePeriods - extraPeriods);const yearsSaved = (periodsSaved / n).toFixed(1);document.getElementById('interestSaved').textContent = $${interestSaved.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})};document.getElementById('timeSaved').textContent = ${yearsSaved} Years;}// --- 2. RETAIL PRODUCT DATABASE STATE STORAGE HANDLERS ---let groceryData = [{ store: 'Woolworths', item: 'Cadbury Baking Chocolate 180g', specialPrice: 3.50, normalPrice: 7.00 },{ store: 'Coles', item: 'KB's Squid Rings 500g', specialPrice: 5.75, normalPrice: 11.50 },{ store: 'Aldi', item: 'Specially Selected Sourdough', specialPrice: 3.29, normalPrice: 4.49 },{ store: 'Woolworths', item: 'Chobani Greek Yogurt 1kg', specialPrice: 6.00, normalPrice: 8.50 },{ store: 'Coles', item: 'Twinings English Breakfast Tea 100pk', specialPrice: 7.55, normalPrice: 15.10 }];function renderTable(items) {const tbody = document.getElementById('groceryTableBody');tbody.innerHTML = '';items.forEach(item => {const savingsPct = (((item.normalPrice - item.specialPrice) / item.normalPrice) * 100).toFixed(0);let storeBadgeColor = 'bg-slate-100 text-slate-700';if (item.store === 'Woolworths') storeBadgeColor = 'bg-emerald-50 text-emerald-700 border border-emerald-200/50';if (item.store === 'Coles') storeBadgeColor = 'bg-red-50 text-red-700 border border-red-200/50';if (item.store === 'Aldi') storeBadgeColor = 'bg-blue-50 text-blue-700 border border-blue-200/50';const row = <tr class="hover:bg-slate-50/60 transition-colors duration-150"> <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider uppercase ${storeBadgeColor}">${item.store}</span></td> <td class="py-4 px-6 font-semibold text-slate-900">${item.item}</td> <td class="py-4 px-6 font-bold text-emerald-600 text-sm">$${item.specialPrice.toFixed(2)}</td> <td class="py-4 px-6 text-slate-400 line-through">$${item.normalPrice.toFixed(2)}</td> <td class="py-4 px-6"><span class="text-[10px] bg-amber-50 text-amber-800 border border-amber-200/60 font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">${savingsPct}% OFF</span></td> </tr>;tbody.insertAdjacentHTML('beforeend', row);});}function filterGroceries(storeName) {if (storeName === 'All') {renderTable(groceryData);} else {const filtered = groceryData.filter(item => item.store === storeName);renderTable(filtered);}}function addNewSpecialItem() {const store = document.getElementById('newStore').value;const item = document.getElementById('newItemName').value.trim();const specialPrice = parseFloat(document.getElementById('newSpecialPrice').value);const normalPrice = parseFloat(document.getElementById('newNormalPrice').value);if (!item || isNaN(specialPrice) || isNaN(normalPrice)) {alert('Please provide complete layout data input values first.');return;}// Unshift moves new items directly to the top list position row tracking matrixgroceryData.unshift({ store, item, specialPrice, normalPrice });renderTable(groceryData);// Clean data state configurations input fieldsdocument.getElementById('newItemName').value = '';document.getElementById('newSpecialPrice').value = '';document.getElementById('newNormalPrice').value = '';}window.onload = () => {calculateLoan();renderTable(groceryData);};
