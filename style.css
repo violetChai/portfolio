@@ -1,6 +1,3 @@
-/* ==========================================================================
-   VIOLET'S WORKSPACE GLOBAL DESIGN MATRIX
-   ========================================================================== */
 
 * { 
     margin: 0; 
@@ -221,7 +218,7 @@ main {
     font-weight: 600; 
 }
 
-.form-group input, .form-group select { 
+.form-group input, .form-group select, .field input, .field select { 
     width: 100%; 
     background: #0f172a; 
     border: 1px solid #475569; 
@@ -230,7 +227,7 @@ main {
     color: #fff; 
     font-size: 0.85rem; 
     outline: none; 
-}
+} 
 
 .form-group input.has-symbol { 
     padding-left: 26px; 
