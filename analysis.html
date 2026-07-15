@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            <!-- WIDGET 4: CAPM ESTIMATOR -->
+             <!-- WIDGET 4: CAPM ESTIMATOR -->
             <div class="panel">
                 <div>
                     <h3>🛡️ Capital Asset Pricing Model (CAPM)</h3>
@@ -160,7 +160,84 @@
                     <button onclick="calculateCAPM()" class="calc-btn">Evaluate Required Hurdle Rate</button>
                     <div class="result-display">
                         <div class="result-row"><div class="lbl">Expected Cost of Equity Cap:</div><div id="capmOutput" class="val">0.00%</div></div>
-Market Risk Premium:0.00%© 2026 Violet Chai. Pure uncompromised local calculation matrices.function calculateSprint() {const team = parseInt(document.getElementById('teamSize').value) || 0;const days = parseInt(document.getElementById('sprintDays').value) || 0;const rawEstimates = document.getElementById('taskEstimates').value;// Standard Product Management assumption: 6 productive focus hours a day per engineerconst totalCapacityPool = team * days * 6;const arr = rawEstimates.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x)).sort((a, b) => a - b);if(arr.length === 0) return;// Compute Mathematical Median Task Time Valuelet median = 0;const mid = Math.floor(arr.length / 2);if(arr.length % 2 !== 0) {median = arr[mid];} else {median = (arr[mid - 1] + arr[mid]) / 2;}const feasibleTasks = Math.floor(totalCapacityPool / median);document.getElementById('medianOutput').textContent = median.toFixed(1) + ' Hours';document.getElementById('capacityOutput').textContent = totalCapacityPool + ' Hours';document.getElementById('feasibleTasksOutput').textContent = feasibleTasks + ' Backlog Tasks';}function calculateLTV() {const ltv = parseFloat(document.getElementById('ltvValue').value) || 0;const cac = parseFloat(document.getElementById('cacValue').value) || 1;const ratio = ltv / cac;document.getElementById('ratioOutput').textContent = ratio.toFixed(2) + ' : 1';const bar = document.getElementById('gaugeBar');const status = document.getElementById('healthOutput');// Map SaaS Industry Health Benchmark Ratioslet fillPct = Math.min((ratio / 5) * 100, 100);bar.style.width = fillPct + '%';if(ratio < 1.0) {status.textContent = '⚠️ Distressed Capital Contraction';status.style.color = '#ef4444';bar.style.backgroundColor = '#ef4444';} else if(ratio >= 1.0 && ratio < 3.0) {status.textContent = '⚖️ Sub-Optimal Efficiency Threshold';status.style.color = '#f59e0b';bar.style.backgroundColor = '#f59e0b';} else {status.textContent = '👑 Elite High-Growth Scale Grade';status.style.color = '#10b981';bar.style.backgroundColor = '#10b981';}}function calculateNPV() {const initial = parseFloat(document.getElementById('npvInitial').value) || 0;const rate = (parseFloat(document.getElementById('npvRate').value) || 0) / 100;const flows = document.getElementById('npvFlows').value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));let npv = -initial;for(let t = 0; t < flows.length; t++) {npv += flows[t] / Math.pow(1 + rate, t + 1);}document.getElementById('npvOutput').textContent = (npv >= 0 ? '$' : '-$') + Math.abs(npv).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});const verdict = document.getElementById('npvVerdict');if(npv > 0) {verdict.textContent = '✅ Highly Viable Asset Generation Opportunity';verdict.style.color = '#10b981';} else {verdict.textContent = '❌ Reject Venture Value Destructive Matrix';verdict.style.color = '#ef4444';}}function calculateCAPM() {const rf = (parseFloat(document.getElementById('capmRiskFree').value) || 0) / 100;const beta = parseFloat(document.getElementById('capmBeta').value) || 0;const rm = (parseFloat(document.getElementById('capmMarket').value) || 0) / 100;const mrp = rm - rf;const expectedReturn = rf + (beta * mrp);document.getElementById('capmOutput').textContent = (expectedReturn * 100).toFixed(2) + '%';document.getElementById('mrpOutput').textContent = (mrp * 100).toFixed(2) + '%';}// Initialize Suite Configurations Automatically on Load Runtimewindow.onload = function() {calculateSprint();calculateLTV();calculateNPV();calculateCAPM();}
-</script>
+                        <div class="result-row"><div class="lbl">Market Risk Premium:</div><div id="mrpOutput" class="val">0.00%</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>&copy; 2026 Violet Chai. Pure uncompromised local calculation matrices.</footer>
+
+    <!-- JavaScript Execution Engine Container -->
+    <script>
+        function calculateSprint() {
+            const team = parseInt(document.getElementById('teamSize').value) || 0;
+            const days = parseInt(document.getElementById('sprintDays').value) || 0;
+            const rawEstimates = document.getElementById('taskEstimates').value;
+            const totalCapacityPool = team * days * 6;
+            const arr = rawEstimates.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x)).sort((a, b) => a - b);
+            if(arr.length === 0) return;
+            let median = 0;
+            const mid = Math.floor(arr.length / 2);
+            if(arr.length % 2 !== 0) { median = arr[mid]; } else { median = (arr[mid - 1] + arr[mid]) / 2; }
+            const feasibleTasks = Math.floor(totalCapacityPool / median);
+            document.getElementById('medianOutput').textContent = median.toFixed(1) + ' Hours';
+            document.getElementById('capacityOutput').textContent = totalCapacityPool + ' Hours';
+            document.getElementById('feasibleTasksOutput').textContent = feasibleTasks + ' Backlog Tasks';
+        }
+
+        function calculateLTV() {
+            const ltv = parseFloat(document.getElementById('ltvValue').value) || 0;
+            const cac = parseFloat(document.getElementById('cacValue').value) || 1;
+            const ratio = ltv / cac;
+            document.getElementById('ratioOutput').textContent = ratio.toFixed(2) + ' : 1';
+            const bar = document.getElementById('gaugeBar');
+            const status = document.getElementById('healthOutput');
+            let fillPct = Math.min((ratio / 5) * 100, 100);
+            bar.style.width = fillPct + '%';
+            if(ratio < 1.0) {
+                status.textContent = '⚠️ Distressed Capital Contraction';
+                status.style.color = '#ef4444';
+                bar.style.backgroundColor = '#ef4444';
+            } else if(ratio >= 1.0 && ratio < 3.0) {
+                status.textContent = '⚖️ Sub-Optimal Efficiency Threshold';
+                status.style.color = '#f59e0b';
+                bar.style.backgroundColor = '#f59e0b';
+            } else {
+                status.textContent = '👑 Elite High-Growth Scale Grade';
+                status.style.color = '#10b981';
+                bar.style.backgroundColor = '#10b981';
+            }
+        }
+
+        function calculateNPV() {
+            const initial = parseFloat(document.getElementById('npvInitial').value) || 0;
+            const rate = (parseFloat(document.getElementById('npvRate').value) || 0) / 100;
+            const flows = document.getElementById('npvFlows').value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
+            let npv = -initial;
+            for(let t = 0; t < flows.length; t++) { npv += flows[t] / Math.pow(1 + rate, t + 1); }
+            document.getElementById('npvOutput').textContent = (npv >= 0 ? '$' : '-$') + Math.abs(npv).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            const verdict = document.getElementById('npvVerdict');
+            if(npv > 0) { verdict.textContent = '✅ Highly Viable Asset Generation Opportunity'; verdict.style.color = '#10b981'; } 
+            else { verdict.textContent = '❌ Reject Venture Value Destructive Matrix'; verdict.style.color = '#ef4444'; }
+        }
+
+        function calculateCAPM() {
+            const rf = (parseFloat(document.getElementById('capmRiskFree').value) || 0) / 100;
+            const beta = parseFloat(document.getElementById('capmBeta').value) || 0;
+            const rm = (parseFloat(document.getElementById('capmMarket').value) || 0) / 100;
+            const mrp = rm - rf;
+            const expectedReturn = rf + (beta * mrp);
+            document.getElementById('capmOutput').textContent = (expectedReturn * 100).toFixed(2) + '%';
+            document.getElementById('mrpOutput').textContent = (mrp * 100).toFixed(2) + '%';
+        }
+
+        window.onload = function() {
+            calculateSprint();
+            calculateLTV();
+            calculateNPV();
+            calculateCAPM();
+        }
+    </script>
 </body>
 </html>
