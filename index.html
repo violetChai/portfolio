@@ -20,57 +20,50 @@
         .btn { display: inline-block; text-decoration: none; padding: 12px 24px; font-weight: 700; font-size: 0.85rem; border-radius: 12px; margin-right: 12px; transition: 0.2s; }
         .btn-primary { background: #6366f1; color: #fff; }
         .btn-primary:hover { background: #4f46e5; }
-        .btn-secondary { background: #1e293b; color: #e2e8f0; border: 1px solid #475569; }
-        .btn-secondary:hover { background: #334155; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .card { background: #1e293b; border: 1px solid #334155; padding: 24px; border-radius: 16px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .card { background: #1e293b; border: 1px solid #334155; padding: 24px; border-radius: 16px; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s; }
+        .card:hover { transform: translateY(-4px); border-color: #6366f1; }
         .card h3 { font-size: 1.1rem; margin: 12px 0 8px 0; color: #fff; }
         .card p { color: #94a3b8; font-size: 0.85rem; line-height: 1.5; }
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
-        @media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
     </style>
-        <!-- PWA Installation Assets -->
-    <link rel="manifest" href="manifest.json">
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-    </script>
-
 </head>
 <body>
     <header>
         <div class="nav-container">
             <div class="logo">⚡ Violet.Dev</div>
-          <nav class="flex space-x-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 text-xs font-bold">
-    <a href="index.html">Dashboard</a>
-    <a href="pm-tools.html">Product Tools</a>
-    <a href="loans.html">Project Tools</a>
-    <a href="analysis.html">Business Analysis</a>
-    <a href="groceries.html">Feature Examples</a>
-</nav>
+            <nav>
+                <a href="index.html" class="active">Dashboard</a>
+                <a href="pm-tools.html">Product Tools</a>
+                <a href="projects.html">Project Tools</a>
+                <a href="analysis.html">Business Analysis</a>
+            </nav>
         </div>
     </header>
     <main>
         <div class="hero">
-            <h1>FinRetail Web Suite</h1>
-            <p>Welcome to my custom utility portfolio workspace. This platform features computational finance models and persistent data layouts built cleanly from scratch using core web standards.</p>
-            <a href="loans.html" class="btn btn-primary">Launch Loan Suite</a>
-            <a href="groceries.html" class="btn btn-secondary">Open Grocery Tracker</a>
+            <h1>Violet's FinRetail Portfolio</h1>
+            <p>A professional utility workspace featuring programmatic configuration gating systems, milestone roadmap trackers, and custom industry analytical calculation matrices built completely from scratch.</p>
+            <a href="pm-tools.html" class="btn btn-primary">Explore Workspace Suite</a>
         </div>
         <div class="grid">
-            <div class="card">
-                <div>🏠</div>
-                <h3>Mortgage Amortization Logic</h3>
-                <p>Calculates baseline loan repayments and maps interest savings when supplementary extra payments are injected into payment cycles.</p>
-            </div>
-            <div class="card">
-                <div>🛒</div>
-                <h3>Dynamic Grocery Tracking</h3>
-                <p>Logs catalog half-price specials using persistent client-side database modules, featuring live filtering operations.</p>
-            </div>
+            <a href="pm-tools.html" class="card">
+                <div>🚀</div>
+                <h3>Product Management Tools</h3>
+                <p>Features dynamic dropdown selectors to cycle through live Feature Flags gating simulations, A/B Test sample duration tools, and Agile Burnup release estimation horizons.</p>
+            </a>
+            <a href="projects.html" class="card">
+                <div>📅</div>
+                <h3>Project Delivery Tools</h3>
+                <p>An interactive product release roadmap environment that plots user milestones dynamically inside a visual 12-week Gantt Chart track matrix layout.</p>
+            </a>
+            <a href="analysis.html" class="card">
+                <div>📊</div>
+                <h3>Business Analysis & Industry Suite</h3>
+                <p>Consolidates mathematical mortgage overpayment models with visual cost-ratio graphs alongside an active retail grocery data index with built-in Excel CSV download scripts.</p>
+            </a>
         </div>
     </main>
-    <footer>&copy; 2026 Violet Chai. Built using pure native CSS layout structures.</footer>
+    <footer>&copy; 2026 Violet Chai. Pure local native execution architectures.</footer>
 </body>
 </html>

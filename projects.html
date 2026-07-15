@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Violet's Portfolio | Project Tracker</title>
+    <title>Violet's Portfolio | Project Roadmap</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background: #0f172a; color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
@@ -16,25 +16,25 @@
         main { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; }
         .title-block { border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; }
         .title-block h2 { font-size: 1.5rem; color: #fff; }
-        .title-block p { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; }
-        .panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px; margin-bottom: 30px; }
-        .form-row { display: grid; grid-template-columns: 3fr 2fr 1fr; gap: 15px; align-items: end; }
+        .panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin-bottom: 30px; }
+        .form-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 15px; align-items: end; }
         .field { display: flex; flex-direction: column; gap: 6px; }
         .field label { font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
         .field input, .field select { background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 0.85rem; outline: none; }
-        .btn-add { background: #6366f1; color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 11px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .btn-add { width: 100%; background: #6366f1; color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 11px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
         .btn-add:hover { background: #4f46e5; }
-        .timeline-container { display: flex; flex-direction: column; gap: 20px; position: relative; padding-left: 20px; border-left: 2px solid #334155; margin-top: 10px; }
-        .timeline-item { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 15px; position: relative; display: flex; justify-content: space-between; align-items: center; }
-        .timeline-item::before { content: ""; position: absolute; left: -27px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; border-radius: 50%; background: #475569; border: 2px solid #0f172a; }
-        .timeline-item.complete::before { background: #10b981; }
-        .timeline-item.progress::before { background: #fbbf24; }
-        .badge { font-size: 0.65rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; }
-        .badge-done { background: rgba(16,185,129,0.1); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
-        .badge-working { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
-        .badge-backlog { background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+        .gantt-chart { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin-bottom: 30px; }
+        .gantt-header { display: grid; grid-template-columns: 3fr 7fr; border-bottom: 1px solid #334155; padding-bottom: 10px; margin-bottom: 15px; font-size: 0.7rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
+        .gantt-timeline-labels { display: grid; grid-template-columns: repeat(12, 1fr); text-align: center; }
+        .gantt-row { display: grid; grid-template-columns: 3fr 7fr; align-items: center; margin-bottom: 15px; gap: 10px; }
+        .task-name { font-size: 0.85rem; font-weight: 600; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .track-bg { background: #0f172a; border-radius: 8px; height: 32px; width: 100%; position: relative; border: 1px solid #334155; display: grid; grid-template-columns: repeat(12, 1fr); }
+        .gantt-bar { background: linear-gradient(90deg, #6366f1, #a855f7); border-radius: 6px; height: 22px; position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: #fff; box-shadow: 0 4px 10px rgba(99,102,241,0.3); transition: all 0.3s ease; }
+        .gantt-bar.complete { background: linear-gradient(90deg, #10b981, #059669); box-shadow: 0 4px 10px rgba(16,185,129,0.3); }
+        .gantt-bar.backlog { background: linear-gradient(90deg, #475569, #334155); box-shadow: none; border: 1px solid #475569; color: #94a3b8; }
+        .del-btn { background: transparent; border: none; color: #ef4444; font-size: 0.7rem; font-weight: 700; cursor: pointer; display: block; margin-top: 2px; }
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
-        @media(max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
+        @media(max-width: 768px) { .form-row { grid-template-columns: 1fr; } .gantt-header, .gantt-row { grid-template-columns: 1fr; } .gantt-header { display: none; } }
     </style>
 </head>
 <body>
@@ -51,71 +51,111 @@
     </header>
     <main>
         <div class="title-block">
-            <h2>📅 Project Milestone & Lifecycle Roadmap</h2>
-            <p>Track delivery trajectories, log pipeline objectives, and view dynamic development timelines natively.</p>
+            <h2>📅 Project Visual Roadmap & Gantt Timeline</h2>
+            <p style="color:#94a3b8; font-size:0.8rem; margin-top:5px;">Input operational lifecycles and render interactive cross-functional team milestones over a 12-week release window.</p>
         </div>
 
         <div class="panel">
             <div class="form-row">
-                <div class="field"><label>Milestone Objective Target</label><input type="text" id="milestoneName" placeholder="e.g., Deploy Single Sign-On Authentication Gateway"></div>
+                <div class="field"><label>Project Task Name</label><input type="text" id="tName" placeholder="e.g., Core Engine Optimization"></div>
+                <div class="field"><label>Start Week (1-12)</label><input type="number" id="tStart" value="2" min="1" max="12"></div>
+                <div class="field"><label>Duration (Weeks)</label><input type="number" id="tDuration" value="4" min="1" max="12"></div>
                 <div class="field">
-                    <label>Operational Lifecycle Status</label>
-                    <select id="milestoneStatus">
-                        <option value="complete">✅ Lifecycle Completed</option>
-                        <option value="progress">⚡ Active In-Progress</option>
-                        <option value="backlog">💤 Backlog Queue Target</option>
+                    <label>Status</label>
+                    <select id="tStatus">
+                        <option value="progress">⚡ Active Tracking</option>
+                        <option value="complete">✅ Completed</option>
+                        <option value="backlog">💤 Backlog Queue</option>
                     </select>
                 </div>
-                <button onclick="addMilestone()" class="btn-add">Add Node</button>
+                <button onclick="addTaskNode()" class="btn-add">Plot Task</button>
             </div>
         </div>
 
-        <div class="timeline-container" id="timelineGrid"></div>
+        <!-- VISUAL GANTT TRACK MATRIX -->
+        <div class="gantt-chart">
+            <div class="gantt-header">
+                <div>Project Timeline Tasks</div>
+                <div class="gantt-timeline-labels">
+                    <span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span>
+                    <span>W7</span><span>W8</span><span>W9</span><span>W10</span><span>W11</span><span>W12</span>
+                </div>
+            </div>
+            <div id="ganttRowsContainer"></div>
+        </div>
     </main>
-    <footer>&copy; 2026 Violet Chai. Pure uncompromised local timeline matrices.</footer>
+    <footer>&copy; 2026 Violet Chai. Local programmatic tracking visualization panels.</footer>
 
     <script>
-        const defaultMilestones = [
-            { name: "Execute Initial User Flow Discoveries", status: "complete" },
-            { name: "Optimize Finance Repayment Algorithms", status: "progress" },
-            { name: "Configure Native Browser Storage PWA Caching", status: "backlog" }
+        const initialTasks = [
+            { name: "User Interface Discovery Lab", start: 1, duration: 3, status: "complete" },
+            { name: "Optimize Finance Amortization Code", start: 3, duration: 5, status: "progress" },
+            { name: "Configure Native PWA Manifest States", start: 8, duration: 4, status: "backlog" }
         ];
 
-        let milestones = JSON.parse(localStorage.getItem('violet_portfolio_milestones')) || defaultMilestones;
+        let projectTasks = JSON.parse(localStorage.getItem('violet_gantt_tasks')) || initialTasks;
 
-        function renderTimeline() {
-            const container = document.getElementById('timelineGrid');
-            container.innerHTML = '';
-            milestones.forEach((m, idx) => {
-                let badgeCls = 'badge-backlog', statusText = 'Queue Backlog', itemCls = '';
-                if (m.status === 'complete') { badgeCls = 'badge-done'; statusText = 'Completed'; itemCls = 'complete'; }
-                if (m.status === 'progress') { badgeCls = 'badge-working'; statusText = 'Active Tracking'; itemCls = 'progress'; }
+        function drawGanttChart() {
+            const wrapper = document.getElementById('ganttRowsContainer');
+            wrapper.innerHTML = '';
 
-                const row = `<div class="timeline-item ${itemCls}">` +
-                    `<div><h4 style="font-size:0.9rem; color:#fff; margin-bottom:4px;">${m.name}</h4><span class="badge ${badgeCls}">${statusText}</span></div>` +
-                    `<button onclick="deleteMilestone(${idx})" style="background:transparent; border:none; color:#ef4444; font-size:0.75rem; font-weight:700; cursor:pointer;">Delete</button>` +
-                    `</div>`;
-                container.insertAdjacentHTML('beforeend', row);
+            projectTasks.forEach((task, index) => {
+                // Bounds mapping logic to secure 12-week boundaries
+                let startCol = Math.max(1, Math.min(task.start, 12));
+                let endCol = Math.max(1, Math.min(startCol + task.duration - 1, 12));
+                let spanWidth = (endCol - startCol + 1);
+
+                // Geometric ratio coordinates calculation
+                let leftPct = ((startCol - 1) / 12) * 100;
+                let widthPct = (spanWidth / 12) * 100;
+
+                // Status mapping string signatures
+                let statusLabel = "TRACKING";
+                let statusClass = "";
+                if (task.status === 'complete') { statusLabel = "DONE"; statusClass = "complete"; }
+                if (task.status === 'backlog') { statusLabel = "QUEUE"; statusClass = "backlog"; }
+
+                // Safe native programmatic row construction
+                const itemTemplate = 
+                    '<div class="gantt-row">' +
+                        '<div>' +
+                            '<div class="task-name">' + task.name + '</div>' +
+                            '<button class="del-btn" onclick="removeTaskNode(' + index + ')">Remove</button>' +
+                        '</div>' +
+                        '<div class="track-bg">' +
+                            '<div class="gantt-bar ' + statusClass + '" style="left:' + leftPct + '%; width:' + widthPct + '%;">' +
+                                statusLabel +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+
+                wrapper.insertAdjacentHTML('beforeend', itemTemplate);
             });
         }
 
-        function addMilestone() {
-            const name = document.getElementById('milestoneName').value.trim();
-            const status = document.getElementById('milestoneStatus').value;
-            if (!name) return;
-            milestones.push({ name, status });
-            localStorage.setItem('violet_portfolio_milestones', JSON.stringify(milestones));
-            renderTimeline();
-            document.getElementById('milestoneName').value = '';
+        function addTaskNode() {
+            const name = document.getElementById('tName').value.trim();
+            const start = parseInt(document.getElementById('tStart').value) || 1;
+            const duration = parseInt(document.getElementById('tDuration').value) || 1;
+            const status = document.getElementById('tStatus').value;
+
+            if (!name) { alert('Please enter a description task name.'); return; }
+            if (start + duration - 1 > 12) { alert('Warning: Task projections slip past the 12-week horizon layout framework.'); }
+
+            projectTasks.push({ name, start, duration, status });
+            localStorage.setItem('violet_gantt_tasks', JSON.stringify(projectTasks));
+            drawGanttChart();
+
+            document.getElementById('tName').value = '';
         }
 
-        function deleteMilestone(idx) {
-            milestones.splice(idx, 1);
-            localStorage.setItem('violet_portfolio_milestones', JSON.stringify(milestones));
-            renderTimeline();
+        function removeTaskNode(index) {
+            projectTasks.splice(index, 1);
+            localStorage.setItem('violet_gantt_tasks', JSON.stringify(projectTasks));
+            drawGanttChart();
         }
 
-        window.onload = renderTimeline;
+        window.onload = drawGanttChart;
     </script>
 </body>
 </html>
