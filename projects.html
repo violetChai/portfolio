@@ -3,57 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Violet's Portfolio | Project Roadmap</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: #0f172a; color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
-        header { background: #1e293b; border-bottom: 1px solid #334155; padding: 15px 30px; }
-        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo { font-weight: 800; font-size: 1.2rem; color: #fff; }
-        nav a { text-decoration: none; color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin-left: 8px; border-radius: 8px; }
-        nav a.active { background: #6366f1; color: #fff; }
-        nav a:hover:not(.active) { color: #fff; background: #334155; }
-        main { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; }
-        .title-block { border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; }
-        .title-block h2 { font-size: 1.5rem; color: #fff; }
-        .panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin-bottom: 30px; }
-        .form-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 15px; align-items: end; }
-        .field { display: flex; flex-direction: column; gap: 6px; }
-        .field label { font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
-        .field input, .field select { background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 0.85rem; outline: none; }
-        .btn-add { width: 100%; background: #6366f1; color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 11px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
-        .btn-add:hover { background: #4f46e5; }
-        .gantt-chart { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin-bottom: 30px; }
-        .gantt-header { display: grid; grid-template-columns: 3fr 7fr; border-bottom: 1px solid #334155; padding-bottom: 10px; margin-bottom: 15px; font-size: 0.7rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
-        .gantt-timeline-labels { display: grid; grid-template-columns: repeat(12, 1fr); text-align: center; }
-        .gantt-row { display: grid; grid-template-columns: 3fr 7fr; align-items: center; margin-bottom: 15px; gap: 10px; }
-        .task-name { font-size: 0.85rem; font-weight: 600; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .track-bg { background: #0f172a; border-radius: 8px; height: 32px; width: 100%; position: relative; border: 1px solid #334155; display: grid; grid-template-columns: repeat(12, 1fr); }
-        .gantt-bar { background: linear-gradient(90deg, #6366f1, #a855f7); border-radius: 6px; height: 22px; position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: #fff; box-shadow: 0 4px 10px rgba(99,102,241,0.3); transition: all 0.3s ease; }
-        .gantt-bar.complete { background: linear-gradient(90deg, #10b981, #059669); box-shadow: 0 4px 10px rgba(16,185,129,0.3); }
-        .gantt-bar.backlog { background: linear-gradient(90deg, #475569, #334155); box-shadow: none; border: 1px solid #475569; color: #94a3b8; }
-        .del-btn { background: transparent; border: none; color: #ef4444; font-size: 0.7rem; font-weight: 700; cursor: pointer; display: block; margin-top: 2px; }
-        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
-        @media(max-width: 768px) { .form-row { grid-template-columns: 1fr; } .gantt-header, .gantt-row { grid-template-columns: 1fr; } .gantt-header { display: none; } }
-    </style>
+    <title>Violet's Portfolio | Project Tracker</title>
+    <!-- Standalone Style Sheets Node Link -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="nav-container">
             <div class="logo">⚡ Violet.Dev</div>
-            <nav class="flex space-x-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 text-xs font-bold">
-    <a href="index.html">Dashboard</a>
-    <a href="pm-tools.html">Product Tools</a>
-    <a href="projects.html">Project Tools</a>
-    <a href="analysis.html">Business Analysis</a>
-    <a href="examples.html">Industry Examples</a>
-</nav>
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="pm-tools.html">Product Tools</a>
+                <a href="projects.html" class="active">Project Tools</a>
+                <a href="analysis.html">Business Analysis</a>
+                <a href="examples.html">Industry Examples</a>
+            </nav>
         </div>
     </header>
     <main>
         <div class="title-block">
             <h2>📅 Project Visual Roadmap & Gantt Timeline</h2>
-            <p style="color:#94a3b8; font-size:0.8rem; margin-top:5px;">Input operational lifecycles and render interactive cross-functional team milestones over a 12-week release window.</p>
+            <p>Input operational lifecycles and render interactive cross-functional team milestones over a 12-week release window.</p>
         </div>
 
         <div class="panel">
@@ -73,7 +43,6 @@
             </div>
         </div>
 
-        <!-- VISUAL GANTT TRACK MATRIX -->
         <div class="gantt-chart">
             <div class="gantt-header">
                 <div>Project Timeline Tasks</div>
@@ -101,22 +70,18 @@
             wrapper.innerHTML = '';
 
             projectTasks.forEach((task, index) => {
-                // Bounds mapping logic to secure 12-week boundaries
                 let startCol = Math.max(1, Math.min(task.start, 12));
                 let endCol = Math.max(1, Math.min(startCol + task.duration - 1, 12));
                 let spanWidth = (endCol - startCol + 1);
 
-                // Geometric ratio coordinates calculation
                 let leftPct = ((startCol - 1) / 12) * 100;
                 let widthPct = (spanWidth / 12) * 100;
 
-                // Status mapping string signatures
                 let statusLabel = "TRACKING";
                 let statusClass = "";
                 if (task.status === 'complete') { statusLabel = "DONE"; statusClass = "complete"; }
                 if (task.status === 'backlog') { statusLabel = "QUEUE"; statusClass = "backlog"; }
 
-                // Safe native programmatic row construction
                 const itemTemplate = 
                     '<div class="gantt-row">' +
                         '<div>' +
@@ -141,12 +106,9 @@
             const status = document.getElementById('tStatus').value;
 
             if (!name) { alert('Please enter a description task name.'); return; }
-            if (start + duration - 1 > 12) { alert('Warning: Task projections slip past the 12-week horizon layout framework.'); }
-
             projectTasks.push({ name, start, duration, status });
             localStorage.setItem('violet_gantt_tasks', JSON.stringify(projectTasks));
             drawGanttChart();
-
             document.getElementById('tName').value = '';
         }
 

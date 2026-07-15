@@ -3,55 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Violet's Portfolio | Product Suite</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: #0f172a; color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
-        header { background: #1e293b; border-bottom: 1px solid #334155; padding: 15px 30px; }
-        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo { font-weight: 800; font-size: 1.2rem; color: #fff; }
-        nav a { text-decoration: none; color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin-left: 8px; border-radius: 8px; }
-        nav a.active { background: #6366f1; color: #fff; }
-        nav a:hover:not(.active) { color: #fff; background: #334155; }
-        main { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; }
-        .title-block { border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
-        .title-block h2 { font-size: 1.5rem; color: #fff; }
-        .selector-box select { background: #1e293b; color: #fff; border: 1px solid #475569; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: 0.85rem; outline: none; cursor: pointer; }
-        .tool-panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px; display: none; }
-        .tool-panel.active { display: block; }
-        .split-box { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-        .form-group input, .form-group select { width: 100%; background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 0.85rem; outline: none; }
-        .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #0f172a; border-radius: 10px; margin-bottom: 10px; border: 1px solid #334155; }
-        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .3s; border-radius: 24px; }
-        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .3s; border-radius: 50%; }
-        input:checked + .slider { background-color: #6366f1; }
-        input:checked + .slider:before { transform: translateX(20px); }
-        .preview-window { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 20px; min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .badge { font-size: 0.65rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; margin-bottom: 10px; }
-        .btn-calc { width: 100%; background: #6366f1; color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.2s; margin-top: 5px; }
-        .result-box { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 15px; margin-top: 15px; }
-        .result-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 6px 0; }
-        .result-row .lbl { color: #94a3b8; }
-        .result-row .val { font-weight: 700; color: #34d399; }
-        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
-        @media(max-width: 768px) { .title-block { flex-direction: column; align-items: flex-start; gap: 15px; } .split-box { grid-template-columns: 1fr; } }
-    </style>
+    <title>Violet's Portfolio | Product Tools</title>
+    <!-- Standalone Style Sheets Node Link -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="nav-container">
             <div class="logo">⚡ Violet.Dev</div>
-            <nav class="flex space-x-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 text-xs font-bold">
-    <a href="index.html">Dashboard</a>
-    <a href="pm-tools.html">Product Tools</a>
-    <a href="projects.html">Project Tools</a>
-    <a href="analysis.html">Business Analysis</a>
-    <a href="examples.html">Industry Examples</a>
-</nav>
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="pm-tools.html" class="active">Product Tools</a>
+                <a href="projects.html">Project Tools</a>
+                <a href="analysis.html">Business Analysis</a>
+                <a href="examples.html">Industry Examples</a>
+            </nav>
         </div>
     </header>
     <main>
@@ -68,7 +34,6 @@
             </div>
         </div>
 
-        <!-- DROP-DOWN TABS MODULES -->
         <div id="panel-flags" class="tool-panel active">
             <div class="split-box">
                 <div>
@@ -77,7 +42,7 @@
                     <div class="toggle-row"><span>Emergency Dark Mode Override</span><label class="switch"><input type="checkbox" id="flagKill" onchange="updateFlags()"><span class="slider"></span></label></div>
                 </div>
                 <div class="preview-window" id="appMockPreview">
-                    <span id="previewBadge" class="badge" style="background: #334155; color: #94a3b8;">Production Build</span>
+                    <span id="previewBadge" class="badge-container-meta" style="background: #334155; color: #94a3b8;">Production Build</span>
                     <h4 id="previewTitle" style="font-size: 1.1rem; margin-bottom: 8px; color: #fff;">Base App Interface Active</h4>
                     <p id="previewText" style="color: #64748b; font-size: 0.75rem; max-width: 300px;">Viewing the baseline layout configurations initialized for generic user segments.</p>
                     <div id="euConsentBlock" style="display: none; margin-top: 15px; padding: 8px; border: 1px solid #ef4444; color: #f87171; background: rgba(239,68,68,0.05); font-size: 0.65rem; border-radius: 6px; font-weight: 600;">⚠️ GDPR Compliance Active: Data tunnels safe-gated.</div>
@@ -130,7 +95,51 @@
         function updateFlags() {
             const beta = document.getElementById('flagBeta').checked;
             const eu = document.getElementById('flagEU').checked;
-const kill = document.getElementById('flagKill').checked;const preview = document.getElementById('appMockPreview');const badge = document.getElementById('previewBadge');const title = document.getElementById('previewTitle');const txt = document.getElementById('previewText');const gdpr = document.getElementById('euConsentBlock');if (kill) {preview.style.background = "#ffffff"; preview.style.borderColor = "#cbd5e1";title.style.color = "#0f172a"; txt.style.color = "#475569";} else {preview.style.background = "#0f172a"; preview.style.borderColor = "#334155";title.style.color = "#ffffff"; txt.style.color = "#64748b";}if (beta) {badge.textContent = "Beta Track Group"; badge.style.background = "rgba(99,102,241,0.2)"; badge.style.color = "#818cf8";title.textContent = "✨ Next-Gen UI Elements Injected"; txt.textContent = "Viewing newly engineered components restricted to testing group segments.";} else {badge.textContent = "Production Build"; badge.style.background = "#334155"; badge.style.color = "#94a3b8";title.textContent = "Base App Interface Active"; txt.textContent = "Viewing the baseline layout configurations initialized for generic user segments.";}gdpr.style.display = eu ? "block" : "none";}function calculateABSize() {const N = parseFloat(document.getElementById('abTraffic').value) || 1;const p = parseFloat(document.getElementById('abBaseConv').value) / 100;const mde = parseFloat(document.getElementById('abMde').value) / 100;if (p <= 0 || mde <= 0) return;const absoluteEffect = p * mde;const requiredSampleSize = Math.ceil((16 * p * (1 - p)) / (absoluteEffect * absoluteEffect));document.getElementById('sampleSizeOutput').textContent = requiredSampleSize.toLocaleString() + ' Visitors';document.getElementById('durationOutput').textContent = Math.ceil(requiredSampleSize / N) + ' Operational Days';}function calculateVelocity() {const backlog = parseFloat(document.getElementById('vBacklog').value) || 0;const speedHistory = document.getElementById('vHistory').value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));if (speedHistory.length === 0 || backlog <= 0) return;const avgVelocity = speedHistory.reduce((acc, curr) => acc + curr, 0) / speedHistory.length;document.getElementById('avgVelocityOutput').textContent = avgVelocity.toFixed(1) + ' Points/Wk';document.getElementById('weeksOutput').textContent = (backlog / avgVelocity).toFixed(1) + ' Development Weeks';}window.onload = function() { updateFlags(); calculateABSize(); calculateVelocity(); }
-</script>
+            const kill = document.getElementById('flagKill').checked;
+            const preview = document.getElementById('appMockPreview');
+            const badge = document.getElementById('previewBadge');
+            const title = document.getElementById('previewTitle');
+            const txt = document.getElementById('previewText');
+            const gdpr = document.getElementById('euConsentBlock');
+
+            if (kill) {
+                preview.style.background = "#ffffff"; preview.style.borderColor = "#cbd5e1";
+                title.style.color = "#0f172a"; txt.style.color = "#475569";
+            } else {
+                preview.style.background = "#0f172a"; preview.style.borderColor = "#334155";
+                title.style.color = "#ffffff"; txt.style.color = "#64748b";
+            }
+            if (beta) {
+                badge.textContent = "Beta Track Group"; badge.style.background = "rgba(99,102,241,0.2)"; badge.style.color = "#818cf8";
+                title.textContent = "✨ Next-Gen UI Elements Injected"; txt.textContent = "Viewing newly engineered components restricted to testing group segments.";
+            } else {
+                badge.textContent = "Production Build"; badge.style.background = "#334155"; badge.style.color = "#94a3b8";
+                title.textContent = "Base App Interface Active"; txt.textContent = "Viewing the baseline layout configurations initialized for generic user segments.";
+            }
+            gdpr.style.display = eu ? "block" : "none";
+        }
+
+        function calculateABSize() {
+            const N = parseFloat(document.getElementById('abTraffic').value) || 1;
+            const p = parseFloat(document.getElementById('abBaseConv').value) / 100;
+            const mde = parseFloat(document.getElementById('abMde').value) / 100;
+            if (p <= 0 || mde <= 0) return;
+            const absoluteEffect = p * mde;
+            const requiredSampleSize = Math.ceil((16 * p * (1 - p)) / (absoluteEffect * absoluteEffect));
+            document.getElementById('sampleSizeOutput').textContent = requiredSampleSize.toLocaleString() + ' Visitors';
+            document.getElementById('durationOutput').textContent = Math.ceil(requiredSampleSize / N) + ' Operational Days';
+        }
+
+        function calculateVelocity() {
+            const backlog = parseFloat(document.getElementById('vBacklog').value) || 0;
+            const speedHistory = document.getElementById('vHistory').value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
+            if (speedHistory.length === 0 || backlog <= 0) return;
+            const avgVelocity = speedHistory.reduce((acc, curr) => acc + curr, 0) / speedHistory.length;
+            document.getElementById('avgVelocityOutput').textContent = avgVelocity.toFixed(1) + ' Points/Wk';
+            document.getElementById('weeksOutput').textContent = (backlog / avgVelocity).toFixed(1) + ' Development Weeks';
+        }
+
+        window.onload = function() { updateFlags(); calculateABSize(); calculateVelocity(); }
+    </script>
 </body>
 </html>
