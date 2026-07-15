@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Violet's Portfolio | Analytics Suite</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: #0f172a; color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: #1e293b; border-bottom: 1px solid #334155; padding: 15px 30px; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: #fff; }
+        nav a { text-decoration: none; color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin-left: 8px; border-radius: 8px; }
+        nav a.active { background: #6366f1; color: #fff; }
+        nav a:hover:not(.active) { color: #fff; background: #334155; }
+        main { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; }
+        .title-block { border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 30px; }
+        .title-block h2 { font-size: 1.5rem; color: #fff; }
+        .title-block p { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+        .panel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; }
+        .panel h3 { font-size: 0.95rem; color: #fff; margin-bottom: 15px; border-bottom: 1px solid #334155; padding-bottom: 8px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .form-group input, .form-group textarea { width: 100%; background: #0f172a; border: 1px solid #475569; border-radius: 10px; padding: 10px 12px; color: #fff; font-size: 0.85rem; outline: none; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .calc-btn { width: 100%; background: #6366f1; color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+        .calc-btn:hover { background: #4f46e5; }
+        .result-display { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 15px; margin-top: 15px; }
+        .result-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 6px 0; }
+        .result-row .lbl { color: #94a3b8; }
+        .result-row .val { font-weight: 700; color: #fff; }
+        .gauge-container { background: #334155; border-radius: 6px; height: 16px; overflow: hidden; margin-top: 10px; position: relative; }
+        .gauge-bar { height: 100%; width: 0%; background: #10b981; transition: width 0.3s, background-color 0.3s; }
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; margin-top: auto; }
+        @media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">⚡ Violet.Dev</div>
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="loans.html">Home Loans</a>
+                <a href="groceries.html">Grocery Tracker</a>
+                <a href="analysis.html" class="active">Analytics Suite</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="title-block">
+            <h2>📈 Product Operations & Business Analytics</h2>
+            <p>Advanced statistical forecasting, prioritization systems, and capital evaluation logic engines.</p>
+        </div>
+
+        <div class="grid">
+            <!-- WIDGET 1: SPRINT CAPACITY MEDIAN PLANNER -->
+            <div class="panel">
+                <div>
+                    <h3>🏃 Sprint Capacity Median Planner</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Total Engineers</label>
+                            <input type="number" id="teamSize" value="5">
+                        </div>
+                        <div class="form-group">
+                            <label>Sprint Days</label>
+                            <input type="number" id="sprintDays" value="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Task Estimate Inputs (Comma Separated Hours)</label>
+                        <input type="text" id="taskEstimates" value="5, 8, 8, 12, 40">
+                    </div>
+                </div>
+                <div>
+                    <button onclick="calculateSprint()" class="calc-btn">Analyze Sprint Constraints</button>
+                    <div class="result-display">
+                        <div class="result-row"><div class="lbl">Calculated Median Task Time:</div><div id="medianOutput" class="val">0 Hours</div></div>
+                        <div class="result-row"><div class="lbl">Total Team Pool Capacity:</div><div id="capacityOutput" class="val">0 Hours</div></div>
+                        <div class="result-row"><div class="lbl">Max Tasks Feasible:</div><div id="feasibleTasksOutput" class="val" style="color: #fbbf24;">0 Tasks</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WIDGET 2: LTV TO CAC GAUGE -->
+            <div class="panel">
+                <div>
+                    <h3>💎 Customer LTV to CAC Health Ratio</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Lifetime Value (LTV $)</label>
+                            <input type="number" id="ltvValue" value="3000">
+                        </div>
+                        <div class="form-group">
+                            <label>Acquisition Cost (CAC $)</label>
+                            <input type="number" id="cacValue" value="800">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="calculateLTV()" class="calc-btn">Process Unit Economics</button>
+                    <div class="result-display">
+                        <div class="result-row"><div class="lbl">LTV : CAC Proportion Ratio:</div><div id="ratioOutput" class="val">0.00 : 1</div></div>
+                        <div class="result-row"><div class="lbl">Strategic Health Assessment:</div><div id="healthOutput" class="val">-</div></div>
+                        <div class="gauge-container"><div id="gaugeBar" class="gauge-bar"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WIDGET 3: NET PRESENT VALUE (NPV) -->
+            <div class="panel">
+                <div>
+                    <h3>💵 Project Net Present Value (NPV)</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Initial Capital Cost ($)</label>
+                            <input type="number" id="npvInitial" value="50000">
+                        </div>
+                        <div class="form-group">
+                            <label>Discount Rate (% p.a.)</label>
+                            <input type="number" id="npvRate" value="8" step="0.1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Future Annual Cash Inflows (Comma Separated)</label>
+                        <input type="text" id="npvFlows" value="15000, 20000, 25000, 30000">
+                    </div>
+                </div>
+                <div>
+                    <button onclick="calculateNPV()" class="calc-btn">Discount Cash Flows</button>
+                    <div class="result-display">
+                        <div class="result-row"><div class="lbl">Net Present Asset Worth:</div><div id="npvOutput" class="val">$0.00</div></div>
+                        <div class="result-row"><div class="lbl">Investment Venture Verdict:</div><div id="npvVerdict" class="val" style="color: #cbd5e1;">-</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WIDGET 4: CAPM ESTIMATOR -->
+            <div class="panel">
+                <div>
+                    <h3>🛡️ Capital Asset Pricing Model (CAPM)</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Risk-Free Rate (% bond)</label>
+                            <input type="number" id="capmRiskFree" value="3.5" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label>Asset Beta volatility (β)</label>
+                            <input type="number" id="capmBeta" value="1.2" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Market Return (% p.a.)</label>
+                        <input type="number" id="capmMarket" value="9.0" step="0.1">
+                    </div>
+                </div>
+                <div>
+                    <button onclick="calculateCAPM()" class="calc-btn">Evaluate Required Hurdle Rate</button>
+                    <div class="result-display">
+                        <div class="result-row"><div class="lbl">Expected Cost of Equity Cap:</div><div id="capmOutput" class="val">0.00%</div></div>
+Market Risk Premium:0.00%© 2026 Violet Chai. Pure uncompromised local calculation matrices.function calculateSprint() {const team = parseInt(document.getElementById('teamSize').value) || 0;const days = parseInt(document.getElementById('sprintDays').value) || 0;const rawEstimates = document.getElementById('taskEstimates').value;// Standard Product Management assumption: 6 productive focus hours a day per engineerconst totalCapacityPool = team * days * 6;const arr = rawEstimates.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x)).sort((a, b) => a - b);if(arr.length === 0) return;// Compute Mathematical Median Task Time Valuelet median = 0;const mid = Math.floor(arr.length / 2);if(arr.length % 2 !== 0) {median = arr[mid];} else {median = (arr[mid - 1] + arr[mid]) / 2;}const feasibleTasks = Math.floor(totalCapacityPool / median);document.getElementById('medianOutput').textContent = median.toFixed(1) + ' Hours';document.getElementById('capacityOutput').textContent = totalCapacityPool + ' Hours';document.getElementById('feasibleTasksOutput').textContent = feasibleTasks + ' Backlog Tasks';}function calculateLTV() {const ltv = parseFloat(document.getElementById('ltvValue').value) || 0;const cac = parseFloat(document.getElementById('cacValue').value) || 1;const ratio = ltv / cac;document.getElementById('ratioOutput').textContent = ratio.toFixed(2) + ' : 1';const bar = document.getElementById('gaugeBar');const status = document.getElementById('healthOutput');// Map SaaS Industry Health Benchmark Ratioslet fillPct = Math.min((ratio / 5) * 100, 100);bar.style.width = fillPct + '%';if(ratio < 1.0) {status.textContent = '⚠️ Distressed Capital Contraction';status.style.color = '#ef4444';bar.style.backgroundColor = '#ef4444';} else if(ratio >= 1.0 && ratio < 3.0) {status.textContent = '⚖️ Sub-Optimal Efficiency Threshold';status.style.color = '#f59e0b';bar.style.backgroundColor = '#f59e0b';} else {status.textContent = '👑 Elite High-Growth Scale Grade';status.style.color = '#10b981';bar.style.backgroundColor = '#10b981';}}function calculateNPV() {const initial = parseFloat(document.getElementById('npvInitial').value) || 0;const rate = (parseFloat(document.getElementById('npvRate').value) || 0) / 100;const flows = document.getElementById('npvFlows').value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));let npv = -initial;for(let t = 0; t < flows.length; t++) {npv += flows[t] / Math.pow(1 + rate, t + 1);}document.getElementById('npvOutput').textContent = (npv >= 0 ? '$' : '-$') + Math.abs(npv).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});const verdict = document.getElementById('npvVerdict');if(npv > 0) {verdict.textContent = '✅ Highly Viable Asset Generation Opportunity';verdict.style.color = '#10b981';} else {verdict.textContent = '❌ Reject Venture Value Destructive Matrix';verdict.style.color = '#ef4444';}}function calculateCAPM() {const rf = (parseFloat(document.getElementById('capmRiskFree').value) || 0) / 100;const beta = parseFloat(document.getElementById('capmBeta').value) || 0;const rm = (parseFloat(document.getElementById('capmMarket').value) || 0) / 100;const mrp = rm - rf;const expectedReturn = rf + (beta * mrp);document.getElementById('capmOutput').textContent = (expectedReturn * 100).toFixed(2) + '%';document.getElementById('mrpOutput').textContent = (mrp * 100).toFixed(2) + '%';}// Initialize Suite Configurations Automatically on Load Runtimewindow.onload = function() {calculateSprint();calculateLTV();calculateNPV();calculateCAPM();}
+</script>
+</body>
+</html>
