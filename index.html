@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance & Grocery Portfolio</title>
+    <!-- Tailwind CSS for modern, responsive styling -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+
+    <!-- Navigation Header -->
+    <header class="bg-blue-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">DevPortfolio</h1>
+            <nav class="space-x-6 font-medium">
+                <a href="#loan-suite" class="hover:text-blue-200 transition">Home Loan Calculator</a>
+                <a href="#grocery-tracker" class="hover:text-blue-200 transition">Grocery Tracker</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+
+        <!-- SECTION 1: HOME LOAN CALCULATOR SUITE -->
+        <section id="loan-suite" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <div class="border-b border-gray-100 pb-4 mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">🏠 Home Loan Calculator Suite</h2>
+                <p class="text-sm text-gray-500 mt-1">Calculate standard repayments and see how extra contributions slash your loan term.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Inputs Form -->
+                <div class="space-y-4 bg-gray-50 p-5 rounded-xl border border-gray-200">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Loan Amount ($)</label>
+                        <input type="number" id="loanAmount" value="500000" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Interest Rate (% p.a.)</label>
+                            <input type="number" id="interestRate" value="6.5" step="0.01" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Loan Term (Years)</label>
+                            <input type="number" id="loanTerm" value="30" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Payment Frequency</label>
+                            <select id="frequency" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="12">Monthly</option>
+                                <option value="26">Fortnightly</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Extra Repayment ($/period)</label>
+                            <input type="number" id="extraPayment" value="200" class="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    <button onclick="calculateLoan()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition dynamic-btn shadow-sm cursor-pointer">Calculate Breakdown</button>
+                </div>
+
+                <!-- Results Output Display -->
+                <div class="flex flex-col justify-between space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                            <span class="text-xs font-medium text-blue-700 uppercase tracking-wider block mb-1">Base Repayment</span>
+                            <span id="baseRepaymentResult" class="text-2xl font-bold text-blue-900">$0.00</span>
+                        </div>
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                            <span class="text-xs font-medium text-emerald-700 uppercase tracking-wider block mb-1">Total Repayment (+Extra)</span>
+                            <span id="totalRepaymentResult" class="text-2xl font-bold text-emerald-900">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 space-y-3">
+                        <h3 class="text-sm font-bold text-amber-950 uppercase tracking-wider flex items-center">✨ Extra Repayment Impact</h3>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div class="text-amber-900">Time Saved:</div>
+                            <div id="timeSaved" class="font-bold text-right text-amber-950">0 years</div>
+                            <div class="text-amber-900">Total Interest Saved:</div>
+                            <div id="interestSaved" class="font-bold text-right text-amber-950">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: GROCERY SPECIALS TRACKER -->
+        <section id="grocery-tracker" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <div class="border-b border-gray-100 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">🛒 Grocery Specials Tracker</h2>
+                    <p class="text-sm text-gray-500 mt-1">Track half-price specials and catalog deals across different supermarkets.</p>
+                </div>
+                <!-- Dynamic Filtering Controls -->
+                <div class="flex gap-2">
+                    <button onclick="filterGroceries('All')" class="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-semibold rounded-lg transition cursor-pointer">All Stores</button>
+                    <button onclick="filterGroceries('Woolworths')" class="px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-xs font-semibold rounded-lg transition cursor-pointer">Woolworths</button>
+                    <button onclick="filterGroceries('Coles')" class="px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-800 text-xs font-semibold rounded-lg transition cursor-pointer">Coles</button>
+                    <button onclick="filterGroceries('Aldi')" class="px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold rounded-lg transition cursor-pointer">Aldi</button>
+                </div>
+            </div>
+
+            <!-- Responsive Catalog Grid Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            <th class="py-3 px-4">Store</th>
+                            <th class="py-3 px-4">Item Name</th>
+                            <th class="py-3 px-4">Special Price</th>
+                            <th class="py-3 px-4">Normal Price</th>
+                            <th class="py-3 px-4">Discount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="groceryTableBody" class="divide-y divide-gray-100 text-sm">
+                        <!-- Rendered by JavaScript dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Core Interactive Logic Script -->
+    <script>
+        // --- 1. LOAN CALCULATOR ENGINE ---
+        function calculateLoan() {
+            const P = parseFloat(document.getElementById('loanAmount').value);
+            const annualRate = parseFloat(document.getElementById('interestRate').value) / 100;
+            const totalYears = parseFloat(document.getElementById('loanTerm').value);
+            const n = parseInt(document.getElementById('frequency').value);
+            const extra = parseFloat(document.getElementById('extraPayment').value) || 0;
+
+            const r = annualRate / n;
+            const totalPayments = totalYears * n;
+
+            // Mathematical calculation for basic baseline amortization schedule payment:
+            // $M = P \frac{r(1+r)^N}{(1+r)^N - 1}$
+            const basePayment = (P * r * Math.pow(1 + r, totalPayments)) / (Math.pow(1 + r, totalPayments) - 1);
+            const totalPaymentWithExtra = basePayment + extra;
+
+            document.getElementById('baseRepaymentResult').textContent = `$${basePayment.toFixed(2)}`;
+            document.getElementById('totalRepaymentResult').textContent = `$${totalPaymentWithExtra.toFixed(2)}`;
+
+            // Amortization loop to capture exact date reductions and savings thresholds
+            let balanceBase = P;
+            let balanceExtra = P;
+            let totalInterestBase = 0;
+            let totalInterestExtra = 0;
+            let basePeriods = 0;
+            let extraPeriods = 0;// Simulate Standard Loan Journeywhile (balanceBase > 0 && basePeriods < 1200) {let interest = balanceBase * r;totalInterestBase += interest;balanceBase = balanceBase + interest - basePayment;basePeriods++;}// Simulate Extra Contributions Journeywhile (balanceExtra > 0 && extraPeriods < 1200) {let interest = balanceExtra * r;totalInterestExtra += interest;// Pay base payment + any extra contribution set by sliderlet currentPayment = Math.min(basePayment + extra, balanceExtra + interest);balanceExtra = balanceExtra + interest - currentPayment;extraPeriods++;}// Delta difference translationsconst interestSaved = Math.max(0, totalInterestBase - totalInterestExtra);const periodsSaved = Math.max(0, basePeriods - extraPeriods);const yearsSaved = (periodsSaved / n).toFixed(1);document.getElementById('interestSaved').textContent = $${interestSaved.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})};document.getElementById('timeSaved').textContent = ${yearsSaved} Years;}// --- 2. GROCERY TRACKER DATA & FILTER ENGINE ---// Mock data structure layout simulating a local portfolio database stateconst groceryData = [{ store: 'Woolworths', item: 'Cadbury Baking Chocolate 180g', specialPrice: 3.50, normalPrice: 7.00 },{ store: 'Coles', item: 'KB's Squid Rings 500g', specialPrice: 5.75, normalPrice: 11.50 },{ store: 'Aldi', item: 'Specially Selected Sourdough', specialPrice: 3.29, normalPrice: 4.49 },{ store: 'Woolworths', item: 'Chobani Greek Yogurt 1kg', specialPrice: 6.00, normalPrice: 8.50 },{ store: 'Coles', item: 'Twinings English Breakfast Tea 100pk', specialPrice: 7.55, normalPrice: 15.10 }];function renderTable(items) {const tbody = document.getElementById('groceryTableBody');tbody.innerHTML = '';items.forEach(item => {const savingsPct = (((item.normalPrice - item.specialPrice) / item.normalPrice) * 100).toFixed(0);// Set badge colors dynamically depending on store branding ruleslet storeBadgeColor = 'bg-gray-100 text-gray-800';if (item.store === 'Woolworths') storeBadgeColor = 'bg-emerald-100 text-emerald-800';if (item.store === 'Coles') storeBadgeColor = 'bg-red-100 text-red-800';if (item.store === 'Aldi') storeBadgeColor = 'bg-blue-100 text-blue-800';const row = <tr class="hover:bg-gray-50/70 transition"> <td class="py-3.5 px-4"><span class="px-2 py-1 rounded text-xs font-bold ${storeBadgeColor}">${item.store}</span></td> <td class="py-3.5 px-4 font-medium text-gray-900">${item.item}</td> <td class="py-3.5 px-4 font-bold text-emerald-600">$${item.specialPrice.toFixed(2)}</td> <td class="py-3.5 px-4 text-gray-400 line-through">$${item.normalPrice.toFixed(2)}</td> <td class="py-3.5 px-4"><span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${savingsPct}% OFF</span></td> </tr>;tbody.insertAdjacentHTML('beforeend', row);});}function filterGroceries(storeName) {if (storeName === 'All') {renderTable(groceryData);} else {const filtered = groceryData.filter(item => item.store === storeName);renderTable(filtered);}}// Initialize state arrays on load eventswindow.onload = () => {calculateLoan();renderTable(groceryData);
+            };
